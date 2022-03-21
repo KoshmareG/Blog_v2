@@ -1,9 +1,15 @@
 <h3>Новая статья</h3>
 
-<%= form_for :article do |f| %>
-    <p><%= f.label :title %><br/>
-        <%= f.text_field :title %></p>
-    <p><%= f.label :text %><br/>
-        <%= f.text_area :title %></p>
-    <p><%= f.submit %></p>
+<%= form_for :article, url: articles_path, local: true do |f| %>
+    <p>
+        <%= f.label :title %><br/>
+        <%= f.text_field :title %>
+    </p>
+    <p>
+        <%= f.label :text %><br/>
+        <%= f.text_area :text %>
+    </p>
+    <p>
+        <%= f.submit %>
+    </p>
 <% end %>
