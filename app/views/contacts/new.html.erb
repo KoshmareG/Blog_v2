@@ -1,1 +1,19 @@
 <h3>Оставить отзыв</h3>
+
+<%= form_for :contact, url: contacts_path do |f| %>
+    <p>
+        <%= f.label :name %><br/>
+        <%= f.text_field :name %>
+    </p>
+    <p>
+        <%= f.label :email %><br/>
+        <%= f.text_field :email %>
+    </p>
+    <p>
+        <%= f.label :message %><br/>
+        <%= f.text_area :message %>
+    </p>
+    <p>
+        <%= f.submit %>
+    </p>
+<% end %>
