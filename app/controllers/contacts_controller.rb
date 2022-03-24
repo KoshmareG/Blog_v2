@@ -4,9 +4,13 @@ def new
 end
 
 def create
-    render 'create', status: :unprocessable_entity
     @contact = Contact.new(contact_params)
-    @contact.save
+    if @contact.valid?
+        @contact.save
+        render 'create', status: :unprocessable_entity
+    else
+        render action: "new"
+    end
 end
 
 private
