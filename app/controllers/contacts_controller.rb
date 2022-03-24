@@ -9,7 +9,7 @@ def create
         @contact.save
         render 'create', status: :unprocessable_entity
     else
-        render action: "new"
+        render action: "new", status: :unprocessable_entity
     end
 end
 

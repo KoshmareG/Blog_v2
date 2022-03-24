@@ -1,6 +1,15 @@
 <h3>Оставить отзыв</h3>
 
 <%= form_for :contact, url: contacts_path do |f| %>
+   <% if @contact && @contact.errors.any? %>
+    <p>
+        <ul>
+       <% @contact.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+       <% end %>
+        </ul>
+   </p>
+   <% end %>
     <p>
         <%= f.label :name %><br/>
         <%= f.text_field :name %>
