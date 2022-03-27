@@ -3,5 +3,6 @@
     <p><%= art.id %></p>
     <p><%= art.title %></p>
     <p><%= art.text %></p>
+    <%= link_to article_path(art.id), class: "btn" do %>Просмотр<% end %>
     <p>---------------</p>
 <% end %>
