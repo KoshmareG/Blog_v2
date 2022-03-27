@@ -1,4 +1,5 @@
 <p><%= @article.id %></p>
 <p><%= @article.title %></p>
 <p><%= @article.text %></p>
-<%= link_to edit_article_path(@article.id), class: "btn" do %>Изменить<% end %>
+<%= link_to edit_article_path(@article.id), class: "btn" do %>Изменить<% end %></br>
+<%= link_to 'Список статей', articles_path %>
