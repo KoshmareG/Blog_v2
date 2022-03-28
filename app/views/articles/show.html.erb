@@ -1,5 +1,6 @@
 <p><%= @article.id %></p>
 <p><%= @article.title %></p>
 <p><%= @article.text %></p>
-<%= link_to edit_article_path(@article.id), class: "btn" do %>Изменить<% end %></br>
-<%= link_to 'Список статей', articles_path %>
+<%= link_to 'Изменить', edit_article_path %></br>
+<%= link_to 'Список статей', articles_path %></br>
+<%= button_to 'Удалить', article_path, method: :delete %>
