@@ -22,25 +22,33 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link active ms-auto text-center" aria-current="page" href="#">Home</a>
+                <a class="nav-link active mx-auto text-center" aria-current="page" href="#">Home</a>
               </li>
             </ul>
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link active ms-auto text-center" aria-current="page" href="#">Home</a>
+                <a class="nav-link active mx-auto text-center" aria-current="page" href="#">Home</a>
               </li>
             </ul>
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link active ms-auto text-center" aria-current="page" href="#">Home</a>
+                <a class="nav-link active mx-auto text-center" aria-current="page" href="#">Home</a>
+              </li>
+            </ul>
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active mx-auto text-center" aria-current="page" href="#">
+                <% if user_signed_in? %>
+                  <%= button_to 'Выйти', '/users/sign_out', method: :delete, class: "btn btn-outline-secondary" %>
+                <% else %>
+                  <%= button_to 'Sign in', '/users/sign_in', method: :get, class: "btn btn-outline-secondary" %>
+                <% end %></a>
               </li>
             </ul>
           </div>
         </div>
       </div>
     </nav>
-    <%= button_to 'Sign in', '/users/sign_in', method: :get %>
-    <%= button_to 'Sign out', '/users/sign_out', method: :delete %>
 
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
