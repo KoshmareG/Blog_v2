@@ -7,7 +7,7 @@
             <h5 class="card-title"><%= art.title %></h5>
             <h6 class="card-subtitle mb-2 text-muted"><%= art.created_at %></h6>
             <p class="card-text"><%= art.text %></p>
-            <%= link_to article_path(art.id), class: "btn btn-primary" do %>Открыть пост<% end %>
+            <%= link_to article_path(art.id), class: "btn btn-outline-secondary" do %>Открыть пост<% end %>
         </div>
     </div>
 <% end %>
