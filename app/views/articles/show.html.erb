@@ -1,6 +1,6 @@
 <div class="container position-relative">
-    <div class="position-absolute top-50 start-50 translate-middle-x mb-3">
-        <div class="card mb-3" style="width: 42rem;">
+    <div class="position-absolute top-50 start-50 translate-middle-x mb-2">
+        <div class="card mb-2" style="width: 42rem;">
             <div class="card-body">
                 <h5 class="card-title"><%= @article.title %></h5>
                 <h6 class="card-subtitle mb-2 text-muted"><%= @article.created_at %></h6>
@@ -15,7 +15,7 @@
                 </div>
             </div>
         </div>
-        <div class="card mb-3" style="width: 42rem;">
+        <div class="card mb-2" style="width: 42rem;">
             <div class="card-body">
                 <%= form_for([@article, @article.comments.build]) do |f| %>
                 <div class="mb-2">
@@ -29,8 +29,8 @@
                 <% end %>
             </div>
         </div>
-        <% @article.comments.each do |comment| %>
-        <div class="card mb-3" style="width: 42rem;">
+        <% @comments.reverse_each do |comment| %>
+        <div class="card mb-2" style="width: 42rem;">
             <div class="card-body">
                 <h5 class="card-title"><%= comment.author %></h5>
                 <h6 class="fw-lighter"><%= comment.created_at %></h6>
