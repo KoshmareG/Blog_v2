@@ -2,12 +2,12 @@
 <div class="container position-relative">
     <div class="position-absolute top-50 start-50 translate-middle-x">
 <% @articles.each do |art| %>
-    <div class="card mb-3" style="width: 18rem;">
+    <div class="card mb-3" style="width: 42rem;">
         <div class="card-body">
             <h5 class="card-title"><%= art.title %></h5>
             <h6 class="card-subtitle mb-2 text-muted"><%= art.created_at %></h6>
             <p class="card-text"><%= art.text %></p>
-            <%= link_to article_path(art.id), class: "btn btn-primary" do %>Просмотр<% end %>
+            <%= link_to article_path(art.id), class: "btn btn-primary" do %>Открыть пост<% end %>
         </div>
     </div>
 <% end %>
