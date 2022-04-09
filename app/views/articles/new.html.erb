@@ -1,9 +1,9 @@
+<h3 class="mb-3" style="text-align: center">Новая статья</h3>
 <div class="container position-relative">
     <div class="position-absolute top-50 start-50 translate-middle-x mb-2">
         <div class="card mb-2" style="width: 42rem;">
             <div class="card-body">
                 <%= form_for :article, url: articles_path do |f| %>
-                <h5 class="card-title">Редактирование статьи</h5>
                 <label for="exampleFormControlInput1" class="form-label">Заголовок</label>
                 <h6 class="card-subtitle mb-2 text-muted"><%= f.text_field :title, class: "form-control" %></h6>
                 <label for="exampleFormControlInput1" class="form-label">Текст статьи</label>
