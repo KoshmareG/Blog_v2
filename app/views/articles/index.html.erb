@@ -6,7 +6,7 @@
         <div class="card-body">
             <h5 class="card-title"><%= art.title %></h5>
             <h6 class="card-subtitle mb-2 text-muted"><%= art.created_at %></h6>
-            <p class="card-text"><%= art.text %></p>
+            <p class="card-text"><%= art.text.size >= 600 ? art.text[0, 600] + ' ...' : art.text %></p>
             <%= link_to article_path(art.id), class: "btn btn-outline-secondary btn-sm" do %>Открыть пост<% end %>
         </div>
     </div>
