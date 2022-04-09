@@ -7,7 +7,7 @@
                 <p class="card-text"><%= @article.text %></p>
                 <div class="row">
                     <div class="col-2">
-                        <%= button_to 'Изменить', edit_article_path, class: "btn btn-outline-secondary" %>
+                        <%= button_to 'Изменить', edit_article_path, class: "btn btn-outline-secondary", method: :get %>
                     </div>
                     <div class="col-2">
                         <%= button_to 'Удалить', article_path, class: "btn btn-outline-secondary", method: :delete %>
