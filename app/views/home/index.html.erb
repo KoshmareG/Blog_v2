@@ -1,2 +1,15 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<h3 class="mb-3" style="text-align: center">Горячие сатьи</h3>
+<div class="container position-relative">
+    <div class="position-absolute top-50 start-50 translate-middle-x">
+        <% @articles.each do |art| %>
+        <div class="card mb-3" style="width: 42rem;">
+            <div class="card-body">
+                <h5 class="card-title"><%= art.title %></h5>
+                <h6 class="card-subtitle mb-2 text-muted"><%= art.created_at %></h6>
+                <p class="card-text"><%= art.text.size >= 600 ? art.text[0, 600] + ' ...' : art.text %></p>
+                <%= link_to article_path(art.id), class: "btn btn-outline-secondary btn-sm" do %>Открыть пост<% end %>
+            </div>
+        </div>
+        <% end %>
+    </div>
+</div>
