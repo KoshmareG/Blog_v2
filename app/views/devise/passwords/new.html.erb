@@ -14,11 +14,11 @@
                         <%= f.button "Сбросить пароль", type: "submit", class: "btn btn-outline-success btn-sm position-relative top-50 start-50 translate-middle" %>
                     </div>
                     <% end %>
-                    <div class="col position-relative">
-                      <%= link_to "Войти", new_session_path(resource_name), class: "position-relative start-50" %>
+                    <div class="col" style="text-align: center">
+                      <%= link_to "Войти", new_session_path(resource_name) %>
                     </div>
-                    <div class="col position-relative">
-                      <%= link_to "Регистрация", new_registration_path(resource_name), class: "position-relative start-50" %>
+                    <div class="col" style="text-align: center">
+                      <%= link_to "Регистрация", new_registration_path(resource_name) %>
                     </div>
                 </div>
             </div>
