@@ -49,7 +49,7 @@
             <ul class="navbar-nav">
               <li class="nav-item">
                 <% if user_signed_in? %>
-                  <div class="nav-link active mx-auto text-center"><%= current_user.email %></div>
+                  <div class="nav-link active mx-auto text-center"><%= current_user.username %></div>
                 <% else %>
                   <div class="nav-link active mx-auto text-center">Гость</div>
                 <% end %>
