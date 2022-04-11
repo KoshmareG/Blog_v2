@@ -46,6 +46,15 @@
                 <% else %>
                   <%= button_to 'Войти', '/users/sign_in', method: :get, class: "btn btn-outline-secondary btn-sm" %>
                 <% end %>
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <% if user_signed_in? %>
+                  <div class="nav-link active mx-auto text-center"><%= current_user.email %></div>
+                <% else %>
+                  <div class="nav-link active mx-auto text-center">Гость</div>
+                <% end %>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
