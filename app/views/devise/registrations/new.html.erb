@@ -8,9 +8,6 @@
                 <label for="exampleFormControlInput1" class="form-label">Email</label>
                 <h6 class="card-subtitle mb-2 text-muted"><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %></h6>
                 <label for="exampleFormControlInput1" class="form-label">Пароль</label>
-                <% if @minimum_password_length %>
-                <em>(<%= @minimum_password_length %> characters minimum)</em>
-                <% end %><br />
                 <p class="card-text mb-2"><%= f.password_field :password, autocomplete: "new-password", class: "form-control", type: "password" %></p>
                 <label for="exampleFormControlInput1" class="form-label">Повторите пароль</label>
                 <p class="card-text mb-2"><%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", type: "password" %></p>
@@ -22,7 +19,7 @@
                     </div>
                     <% end %>
                     <div class="col position-relative">
-                      <%= link_to "Войти", new_session_path(resource_name), class: "translate-middle" %>
+                      <%= link_to "Войти", new_session_path(resource_name), class: "position-relative start-50" %>
                     </div>
                 </div>
             </div>
