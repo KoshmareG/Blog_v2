@@ -15,6 +15,8 @@ class ArticlesController < ApplicationController
 
     def create
         @article = Article.new(article_params)
+        @article.user_id = current_user.id
+        @article.username = current_user.username
         if @article.valid?
             @article.save
             redirect_to article_path(@article)
