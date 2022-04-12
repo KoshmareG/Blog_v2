@@ -3,14 +3,19 @@
         <div class="card mb-2" style="width: 42rem;">
             <div class="card-body">
                 <h5 class="card-title"><%= @article.title %></h5>
-                <h6 class="card-subtitle mb-2 text-muted"><%= @article.created_at %></h6>
+                <h6 class="card-subtitle mb-2 text-muted"><%= @article.username %></h6>
                 <p class="card-text"><%= simple_format(@article.text) %></p>
                 <div class="row">
+                    <% if @article.user_id == current_user.id %>
                     <div class="col-2">
                         <%= button_to 'Изменить', edit_article_path, class: "btn btn-outline-primary btn-sm", method: :get %>
                     </div>
                     <div class="col-2">
                         <%= button_to 'Удалить', article_path, class: "btn btn-outline-danger btn-sm", method: :delete %>
+                    </div>
+                    <% end %>
+                    <div class="col">
+                        <div style="text-align: end"><%= @article.created_at %></div>
                     </div>
                 </div>
             </div>
