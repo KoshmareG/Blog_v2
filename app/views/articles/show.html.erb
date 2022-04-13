@@ -48,8 +48,19 @@
         <div class="card mb-2" style="width: 42rem;">
             <div class="card-body">
                 <h5 class="card-title"><%= comment.author %></h5>
-                <h6 class="fw-lighter"><%= comment.created_at %></h6>
                 <p class="card-text"><%= comment.body %></p>
+                <div class="row">
+                    <% if user_signed_in? %>
+                        <% if comment.user_id == current_user.id %>
+                        <div class="col-2">
+                            <%= button_to 'Удалить', [@article, comment], class: "btn btn-outline-danger btn-sm", method: :delete %>
+                        </div>
+                        <% end %>
+                    <% end %>
+                    <div class="col">
+                        <div style="text-align: end"><%= comment.created_at %></div>
+                    </div>
+                </div>
             </div>
         </div>
         <% end %>
