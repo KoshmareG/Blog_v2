@@ -17,7 +17,7 @@
                         <% end %>
                     <% end %>
                     <div class="col">
-                        <div style="text-align: end"><%= @article.created_at %></div>
+                        <div style="text-align: end"><%= @article.created_at.strftime("%d.%m.%Y в %H:%M") %></div>
                     </div>
                 </div>
             </div>
@@ -58,7 +58,7 @@
                         <% end %>
                     <% end %>
                     <div class="col">
-                        <div style="text-align: end"><%= comment.created_at %></div>
+                        <div style="text-align: end"><%= comment.created_at.strftime("%d.%m.%Y в %H:%M") %></div>
                     </div>
                 </div>
             </div>

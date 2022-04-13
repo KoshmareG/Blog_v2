@@ -12,7 +12,7 @@
                         <%= link_to article_path(art.id), class: "btn btn-outline-secondary btn-sm" do %>Открыть пост<% end %>
                     </div>
                     <div class="col">
-                        <div style="text-align: end"><%= art.created_at %></div>
+                        <div style="text-align: end"><%= art.created_at.strftime("%d.%m.%Y в %H:%M") %></div>
                     </div>
                 </div>  
             </div>
