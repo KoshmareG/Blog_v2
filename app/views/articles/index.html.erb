@@ -1,22 +1,24 @@
-<h3 class="mb-3" style="text-align: center">Сатьи</h3>
-<div class="container position-relative">
-    <div class="position-absolute top-50 start-50 translate-middle-x">
-        <% @articles.each do |art| %>
-        <div class="card mb-3" style="width: 42rem;">
-            <div class="card-body">
-                <h5 class="card-title"><%= art.title %></h5>
-                <h6 class="card-subtitle mb-2 text-muted">Автор: <%= art.username %></h6>
-                <p class="card-text"><%= art.text.size >= 600 ? simple_format(art.text[0, 600]) + ' ...' : simple_format(art.text) %></p>
-                <div class="row">
-                    <div class="col">
-                        <%= link_to article_path(art.id), class: "btn btn-outline-secondary btn-sm" do %>Открыть пост<% end %>
-                    </div>
-                    <div class="col">
-                        <div style="text-align: end"><%= art.created_at.strftime("%d.%m.%Y в %H:%M") %></div>
-                    </div>
-                </div>  
+<h3 class="mb-3" style="text-align: center">Лента</h3>
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col col-xs-4 col-lg-8">
+            <% @articles.each do |art| %>
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title"><%= art.title %></h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Автор: <%= art.username %></h6>
+                    <p class="card-text"><%= art.text.size >= 600 ? simple_format(art.text[0, 600]) + ' ...' : simple_format(art.text) %></p>
+                    <div class="row">
+                        <div class="col">
+                            <%= link_to article_path(art.id), class: "btn btn-outline-secondary btn-sm" do %>Открыть пост<% end %>
+                        </div>
+                        <div class="col">
+                            <div style="text-align: end"><%= art.created_at.strftime("%d.%m.%Y в %H:%M") %></div>
+                        </div>
+                    </div>  
+                </div>
             </div>
+            <% end %>
         </div>
-        <% end %>
     </div>
 </div>

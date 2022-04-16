@@ -1,16 +1,18 @@
-<div class="container position-relative">
-    <div class="position-absolute top-50 start-50 translate-middle-x mb-2">
-        <div class="card mb-2" style="width: 42rem;">
-            <div class="card-body">
-                <%= form_for @article do |f| %>
-                <h5 class="card-title">Редактирование статьи</h5>
-                <label for="exampleFormControlInput1" class="form-label">Заголовок</label>
-                <h6 class="card-subtitle mb-2 text-muted"><%= f.text_field :title, class: "form-control" %></h6>
-                <label for="exampleFormControlInput1" class="form-label">Текст статьи</label>
-                <p class="card-text"><%= f.text_area :text, class: "form-control", rows: "16" %></p>
-                    <%= f.button "Сохранить", type: "submit", class: "btn btn-outline-success btn-sm" %>
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col col-xs-4 col-lg-8">
+            <div class="card mb-2">
+                <div class="card-body">
+                    <%= form_for @article do |f| %>
+                    <h5 class="card-title">Редактирование статьи</h5>
+                    <label for="exampleFormControlInput1" class="form-label">Заголовок</label>
+                    <h6 class="card-subtitle mb-2 text-muted"><%= f.text_field :title, class: "form-control" %></h6>
+                    <label for="exampleFormControlInput1" class="form-label">Текст статьи</label>
+                    <p class="card-text"><%= f.text_area :text, class: "form-control", rows: "16" %></p>
+                        <%= f.button "Сохранить", type: "submit", class: "btn btn-outline-success btn-sm" %>
+                    </div>
+                    <% end %>
                 </div>
-                <% end %>
             </div>
         </div>
     </div>
