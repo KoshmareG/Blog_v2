@@ -1,68 +1,70 @@
-<div class="container position-relative">
-    <div class="position-absolute top-50 start-50 translate-middle-x mb-2">
-        <div class="card mb-2" style="width: 42rem;">
-            <div class="card-body">
-                <h5 class="card-title"><%= @article.title %></h5>
-                <h6 class="card-subtitle mb-2 text-muted"><%= @article.username %></h6>
-                <p class="card-text"><%= simple_format(@article.text) %></p>
-                <div class="row">
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col col-xs-4 col-lg-8">
+            <div class="card mb-2">
+                <div class="card-body">
+                    <h5 class="card-title"><%= @article.title %></h5>
+                    <h6 class="card-subtitle mb-2 text-muted"><%= @article.username %></h6>
+                    <p class="card-text"><%= simple_format(@article.text) %></p>
+                    <div class="row">
                     <% if user_signed_in? %>
                         <% if @article.user_id == current_user.id %>
-                        <div class="col-2">
+                        <div class="col col-3 col-md-2">
                             <%= button_to 'Изменить', edit_article_path, class: "btn btn-outline-primary btn-sm", method: :get %>
                         </div>
-                        <div class="col-2">
+                        <div class="col col-3 col-md-2">
                             <%= button_to 'Удалить', article_path, class: "btn btn-outline-danger btn-sm", method: :delete %>
                         </div>
                         <% end %>
                     <% end %>
-                    <div class="col">
-                        <div style="text-align: end"><%= @article.created_at.strftime("%d.%m.%Y в %H:%M") %></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <h4 class="mb-3">Комментарии</h4>
-        <% if user_signed_in? %>
-        <div class="card mb-2" style="width: 42rem;">
-            <div class="card-body">
-                <%= form_for([@article, @article.comments.build]) do |f| %>
-                <h6 class="card-title">Оставить комментарий</h6>
-                <div class="form-floating mb-2">
-                    <%= f.text_area :body, class: "form-control", id: "floatingPassword", placeholder: "Комментарий" %>
-                    <label for="floatingPassword">Комментарий</label>
-                </div>
-                    <%= f.button "Отправить", type: "submit", class: "btn btn-outline-success btn-sm" %>
-                <% end %>
-            </div>
-        </div>
-        <% else %>
-        <div class="card mb-2" style="width: 42rem;">
-            <div class="card-body">
-                <h6 style="text-align: center">Чтобы оставить комментарий необходимо 
-                <%= link_to 'войти', new_user_session_url, method: :get %> или <%= link_to 'заергистрироваться', new_user_registration_url, method: :get %></h6>
-            </div>
-        </div>
-        <% end %>
-        <% @comments.reverse_each do |comment| %>
-        <div class="card mb-2" style="width: 42rem;">
-            <div class="card-body">
-                <h5 class="card-title"><%= comment.author %></h5>
-                <p class="card-text"><%= comment.body %></p>
-                <div class="row">
-                    <% if user_signed_in? %>
-                        <% if comment.user_id == current_user.id %>
-                        <div class="col-2">
-                            <%= button_to 'Удалить', [@article, comment], class: "btn btn-outline-danger btn-sm", method: :delete %>
+                        <div class="col col-6 col-md-8">
+                            <div style="text-align: end"><%= @article.created_at.strftime("%d.%m.%Y в %H:%M") %></div>
                         </div>
-                        <% end %>
-                    <% end %>
-                    <div class="col">
-                        <div style="text-align: end"><%= comment.created_at.strftime("%d.%m.%Y в %H:%M") %></div>
                     </div>
                 </div>
             </div>
+            <h4 class="mb-3">Комментарии</h4>
+            <% if user_signed_in? %>
+            <div class="card mb-2">
+                <div class="card-body">
+                    <%= form_for([@article, @article.comments.build]) do |f| %>
+                    <h6 class="card-title">Оставить комментарий</h6>
+                    <div class="form-floating mb-2">
+                        <%= f.text_area :body, class: "form-control", id: "floatingPassword", placeholder: "Комментарий" %>
+                        <label for="floatingPassword">Комментарий</label>
+                    </div>
+                        <%= f.button "Отправить", type: "submit", class: "btn btn-outline-success btn-sm" %>
+                    <% end %>
+                </div>
+            </div>
+            <% else %>
+            <div class="card mb-2" style="width: 42rem;">
+                <div class="card-body">
+                    <h6 style="text-align: center">Чтобы оставить комментарий необходимо 
+                    <%= link_to 'войти', new_user_session_url, method: :get %> или <%= link_to 'заергистрироваться', new_user_registration_url, method: :get %></h6>
+                </div>
+            </div>
+            <% end %>
+            <% @comments.reverse_each do |comment| %>
+            <div class="card mb-2">
+                <div class="card-body">
+                    <h5 class="card-title"><%= comment.author %></h5>
+                    <p class="card-text"><%= comment.body %></p>
+                    <div class="row">
+                        <% if user_signed_in? %>
+                            <% if comment.user_id == current_user.id %>
+                            <div class="col-2">
+                                <%= button_to 'Удалить', [@article, comment], class: "btn btn-outline-danger btn-sm", method: :delete %>
+                            </div>
+                            <% end %>
+                        <% end %>
+                        <div class="col">
+                            <div style="text-align: end"><%= comment.created_at.strftime("%d.%m.%Y в %H:%M") %></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% end %>
         </div>
-        <% end %>
     </div>
 </div>
