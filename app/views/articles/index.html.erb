@@ -5,13 +5,10 @@
             <% @articles.each do |art| %>
             <div class="card mb-3">
                 <div class="card-body">
-                    <h5 class="card-title"><%= art.title %></h5>
+                    <h5><%= link_to art.title, article_path(art.id), class: "link-dark", style: "text-decoration: none" %></h5>
                     <h6 class="card-subtitle mb-2 text-muted">Автор: <%= art.username %></h6>
-                    <p class="card-text"><%= art.text.size >= 600 ? simple_format(art.text[0, 600]) + ' ...' : simple_format(art.text) %></p>
+                    <p class="card-text"><%= simple_format(truncate(art.text, length: 800, separator: ' ', omission: ' ... ') {link_to "Читать дальше", article_path(art.id)}) %></p>
                     <div class="row">
-                        <div class="col">
-                            <%= link_to article_path(art.id), class: "btn btn-outline-secondary btn-sm" do %>Открыть пост<% end %>
-                        </div>
                         <div class="col">
                             <div style="text-align: end"><%= art.created_at.strftime("%d.%m.%Y в %H:%M") %></div>
                         </div>
