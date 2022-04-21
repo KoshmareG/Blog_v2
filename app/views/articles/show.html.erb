@@ -13,7 +13,7 @@
                             <%= button_to 'Изменить', edit_article_path, class: "btn btn-outline-primary btn-sm", method: :get %>
                         </div>
                         <div class="col col-3 col-md-2">
-                            <%= button_to 'Удалить', article_path, class: "btn btn-outline-danger btn-sm", method: :delete %>
+                            <%= button_to 'Удалить', article_path, class: "btn btn-outline-danger btn-sm", method: :delete, form: {data: {turbo_confirm: 'Вы действительно хотите удалить статью?'}} %>
                         </div>
                         <% end %>
                     <% end %>
@@ -38,7 +38,7 @@
                 </div>
             </div>
             <% else %>
-            <div class="card mb-2" style="width: 42rem;">
+            <div class="card mb-2">
                 <div class="card-body">
                     <h6 style="text-align: center">Чтобы оставить комментарий необходимо 
                     <%= link_to 'войти', new_user_session_url, method: :get %> или <%= link_to 'заергистрироваться', new_user_registration_url, method: :get %></h6>
@@ -54,7 +54,7 @@
                         <% if user_signed_in? %>
                             <% if comment.user_id == current_user.id %>
                             <div class="col-2">
-                                <%= button_to 'Удалить', [@article, comment], class: "btn btn-outline-danger btn-sm", method: :delete %>
+                                <%= button_to 'Удалить', [@article, comment], class: "btn btn-outline-danger btn-sm", method: :delete, form: {data: {turbo_confirm: 'Вы действительно хотите удалить комментарий?'}} %>
                             </div>
                             <% end %>
                         <% end %>
