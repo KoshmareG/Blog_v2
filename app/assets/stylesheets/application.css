@@ -13,7 +13,4 @@
  *= require_tree .
  *= require_self
  */
-.background-blur{
-    backdrop-filter: blur(2px);
-filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='4');
-}
+
