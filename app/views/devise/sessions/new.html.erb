@@ -1,7 +1,7 @@
 <h3 class="mb-3" style="text-align: center">Вход</h3>
-<div class="container position-relative">
-    <div class="position-absolute top-50 start-50 translate-middle-x mb-2">
-        <div class="card mb-2" style="width: 42rem;">
+<div class="row justify-content-md-center">
+    <div class="col col-xs-4 col-lg-6">
+        <div class="card mb-2 shadow">
             <div class="card-body">
                 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
                 <label for="exampleFormControlInput1" class="form-label">Email</label>

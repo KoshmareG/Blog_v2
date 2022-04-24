@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row justify-content-md-center">
         <div class="col col-xs-4 col-lg-8">
-            <div class="card mb-2">
+            <div class="card mb-2 shadow">
                 <div class="card-body">
                     <h5 class="card-title"><%= @article.title %></h5>
                     <h6 class="card-subtitle mb-2 text-muted"><%= @article.username %></h6>
@@ -25,7 +25,7 @@
             </div>
             <h4 class="mb-3">Комментарии</h4>
             <% if user_signed_in? %>
-            <div class="card mb-2">
+            <div class="card mb-2 shadow">
                 <div class="card-body">
                     <%= form_for([@article, @article.comments.build]) do |f| %>
                     <h6 class="card-title">Оставить комментарий</h6>
@@ -38,7 +38,7 @@
                 </div>
             </div>
             <% else %>
-            <div class="card mb-2">
+            <div class="card mb-2 shadow">
                 <div class="card-body">
                     <h6 style="text-align: center">Чтобы оставить комментарий необходимо 
                     <%= link_to 'войти', new_user_session_url, method: :get %> или <%= link_to 'заергистрироваться', new_user_registration_url, method: :get %></h6>
@@ -46,7 +46,7 @@
             </div>
             <% end %>
             <% @comments.reverse_each do |comment| %>
-            <div class="card mb-2">
+            <div class="card mb-2 shadow">
                 <div class="card-body">
                     <h5 class="card-title"><%= comment.author %></h5>
                     <p class="card-text"><%= comment.body %></p>
