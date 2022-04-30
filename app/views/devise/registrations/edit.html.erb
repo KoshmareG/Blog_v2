@@ -36,7 +36,7 @@
       <% if current_user.avatar.present? %>
       <%= image_tag(current_user.avatar.variant(resize_to_fill: [50, 50]), class: "rounded-circle") %>
       <% else %>
-      <img alt="image" class="rounded-circle" src="/assets/default_avatar_small.jpg">
+      <%= link_to image_tag("default_avatar.jpeg", size: "40x40", class: "rounded-circle"), root_path %>
       <% end %>
     </label>
     <div class="col-sm-8"><%= f.file_field :avatar, class: "form-control" %></div>
