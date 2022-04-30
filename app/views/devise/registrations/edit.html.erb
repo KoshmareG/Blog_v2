@@ -1,37 +1,74 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-
- 
-  <div class="form-group">
-    <label class="col-sm-4 col-form-label">Avatar:
-      <% if current_user.avatar.present? %>
-      <%= image_tag(current_user.avatar.variant(resize_to_fill: [50, 50]), class: "rounded-circle") %>
-      <% else %>
-      <%= link_to image_tag("default_avatar.jpeg", size: "40x40", class: "rounded-circle"), root_path %>
-      <% end %>
-    </label>
-    <div class="col-sm-8"><%= f.file_field :avatar, class: "form-control" %></div>
+<div class="row justify-content-md-center">
+  <div class="col col-xs-4 col-lg-6">
+    <div class="card mb-2 shadow">
+      <div class="card-body">
+        <div class="row mb-3">
+          <div class="col">
+            <div style="text-align: center;">
+              <% if current_user.avatar.present? %>
+                <%= image_tag(current_user.avatar.variant(resize_to_fill: [120, 120]), class: "avatar-profile-style") %>
+              <% else %>
+                <%= link_to image_tag("default_avatar.jpeg", size: "120x120", class: "avatar-profile-style"), root_path %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <h5 class="card-title text-center"><%= current_user.username %></h5>
+        <p class="fw-light"><b>Ваш Email:</b> <%= current_user.email %></p>
+        <p class="fw-light"><b>Зарегистрирован:</b> <%= current_user.created_at.strftime("%d.%m.%Y в %H:%M") %></p>
+        <div class="row">
+          <div class="col">
+            <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#editAvatar" aria-expanded="false" aria-controls="collapseExample">
+              Обновить фотографию
+            </button>
+            <p><div class="collapse" id="editAvatar">
+              <div class="card card-body">
+                <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+                <div class="form-group mb-2">
+                  <%= f.file_field :avatar, class: "form-control" %>
+                </div>
+                  <%= f.button "Загрузить", type: "submit", class: "btn btn-outline-success btn-sm" %>
+                <% end %>
+              </div>
+            </div></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#editPassword" aria-expanded="false" aria-controls="collapseExample">
+              Изменить пароль
+            </button>
+            <p><div class="collapse" id="editPassword">
+              <div class="card card-body">
+                <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+                <div class="form-group mb-2">
+                  <label class="form-label mb-1">Введите новый пароль</label>
+                    <%= f.password_field :password, autocomplete: "new-password", class: "form-control mb-2", type: "password" %>
+                  <label class="form-label mb-1">Подтвердите новый пароль</label>
+                    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control mb-2", type: "password" %>
+                  <label class="form-label mb-1">Введите старый пароль</label>
+                    <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control mb-2", type: "password" %>
+                </div>
+                  <%= f.button "Изменить", type: "submit", class: "btn btn-outline-success btn-sm" %>
+                <% end %>
+              </div>
+            </div></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <button class="btn btn-outline-danger btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#deleteAccount" aria-expanded="false" aria-controls="collapseExample">
+              Удалить аккаунт
+            </button>
+            <p><div class="collapse" id="deleteAccount">
+              <div class="card card-body">
+                <label class="form-label mb-1"><p>Вы уверены, что хотите удалить аккаунт?</p><p>После этого действия восстановить аккаунт будет невозможно.</p></label>
+                <%= button_to "Удалить аккаунт", registration_path(resource_name), form: {data: {turbo_confirm: 'Вы действительно хотите удалить аккаунт?'}}, method: :delete, class: "btn btn-outline-danger btn-sm" %>
+              </div>
+            </div></p>
+          </div>
+        </div>     
+      </div>
     </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
   </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+</div>
