@@ -23,3 +23,8 @@
     background: transparent;
     border: none;
 }
+
+.articles-avatar{
+    border-radius: 50%;
+    box-shadow: 3px 3px 10px rgba(25, 25, 25, 0.8);
+}

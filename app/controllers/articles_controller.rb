@@ -8,6 +8,7 @@ class ArticlesController < ApplicationController
     def show
         @article = Article.find(params[:id])
         @comments = @article.comments.where.not(id: nil)
+        @user = User.find(@article.user_id)
     end
 
     def new

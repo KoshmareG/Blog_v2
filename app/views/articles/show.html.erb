@@ -3,9 +3,20 @@
         <div class="col col-xs-4 col-lg-8">
             <div class="card mb-2 shadow">
                 <div class="card-body">
-                    <h5 class="card-title"><%= @article.title %></h5>
-                    <h6 class="card-subtitle mb-2 text-muted"><%= @article.username %></h6>
-                    <p class="card-text"><%= simple_format(@article.text) %></p>
+                    <div class="row">
+                        <div class="col-1">
+                            <% if @user.avatar.present? %>
+                                <%= image_tag(@user.avatar.variant(resize_to_fill: [50, 50]), class: "articles-avatar") %>
+                            <% else %>
+                                <%= link_to image_tag("default_avatar.jpeg", size: "50x50", class: "articles-avatar"), root_path %>
+                            <% end %>
+                        </div>
+                        <div class="col-11">
+                            <h5 class="card-title"><%= @article.title %></h5>
+                            <h6 class="card-subtitle mb-2 text-muted"><%= @article.username %></h6>
+                        </div>
+                    </div>
+                    <p class="card-text"><%= simple_format(@article.text) %></p> 
                     <div class="row">
                     <% if user_signed_in? %>
                         <% if @article.user_id == current_user.id %>
