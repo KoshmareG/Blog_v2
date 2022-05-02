@@ -8,7 +8,7 @@
 }
 
 .avatar-profile-style{
-    border: 1px solid transparent;
+    border: 2px solid transparent;
     border-radius: 50%;
     background:linear-gradient(45deg,red, yellow, lime, aqua, blue, magenta, red) border-box;
     box-shadow: 6px 6px 15px gray;
