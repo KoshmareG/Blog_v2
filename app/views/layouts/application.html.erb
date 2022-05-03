@@ -48,7 +48,7 @@
                   <div class="container-fluid fw-light">
                     <h5 class="link-light"><%= current_user.username %></h5>
                     <li>
-                      <%= link_to 'Мой профиль', edit_user_registration_url, class: "link-light lh-base", style: "text-decoration: none" %>
+                      <%= link_to 'Мой профиль', profiles_path(current_user.id), class: "link-light lh-base", style: "text-decoration: none" %>
                     </li>
                     <li>
                       <%= link_to 'Выйти', destroy_user_session_url, data: { turbo_method: :delete }, class: "link-light lh-base", style: "text-decoration: none" %>
