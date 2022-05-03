@@ -59,23 +59,29 @@
             <% @comments.reverse_each do |comment| %>
             <div class="card mb-2 shadow">
                 <div class="card-body">
-                    <h5 class="card-title"><%= comment.author %></h5>
-                        <% if comment.username.present? %>
-                            <%= image_tag(image_url(comment.username), size: "50x50", class: "articles-avatar") %>
-                        <% else %>
-                            <%= image_tag(image_url("default_avatar.jpeg"), size: "50x50", class: "articles-avatar") %>
-                        <% end %>
-                    <p class="card-text"><%= comment.body %></p>
                     <div class="row">
-                        <% if user_signed_in? %>
-                            <% if comment.user_id == current_user.id %>
-                            <div class="col-2">
-                                <%= button_to 'Удалить', [@article, comment], class: "btn btn-outline-danger btn-sm", method: :delete, form: {data: {turbo_confirm: 'Вы действительно хотите удалить комментарий?'}} %>
-                            </div>
+                        <div class="col-1">
+                            <% if comment.username.present? %>
+                                <%= image_tag(image_url(comment.username), size: "45x45", class: "articles-avatar") %>
+                            <% else %>
+                                <%= image_tag(image_url("default_avatar.jpeg"), size: "45x45", class: "articles-avatar") %>
                             <% end %>
-                        <% end %>
-                        <div class="col">
-                            <div style="text-align: end"><%= comment.created_at.strftime("%d.%m.%Y в %H:%M") %></div>
+                        </div>
+                        <div class="col-11">
+                            <h5 class="card-title"><%= comment.author %></h5>
+                            <p class="card-text"><%= comment.body %></p>
+                            <div class="row">
+                                <% if user_signed_in? %>
+                                    <% if comment.user_id == current_user.id %>
+                                    <div class="col-2">
+                                        <%= button_to 'Удалить', [@article, comment], class: "btn btn-outline-danger btn-sm", method: :delete, form: {data: {turbo_confirm: 'Вы действительно хотите удалить комментарий?'}} %>
+                                    </div>
+                                    <% end %>
+                                <% end %>
+                                <div class="col">
+                                    <div style="text-align: end"><%= comment.created_at.strftime("%d.%m.%Y в %H:%M") %></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
