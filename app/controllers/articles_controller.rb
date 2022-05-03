@@ -1,5 +1,8 @@
 class ArticlesController < ApplicationController
     before_action :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy]
+    before_action do
+        ActiveStorage::Current.host = request.base_url
+      end
 
     def index
         @articles = Article.order 'id desc'
@@ -8,7 +11,12 @@ class ArticlesController < ApplicationController
     def show
         @article = Article.find(params[:id])
         @comments = @article.comments.where.not(id: nil)
-        @user = User.find(@article.user_id)
+        @article_author = User.find(@article.user_id)
+        
+        @comments.each do |comment|
+            comment_author = User.find(comment.user_id)
+            comment[:username] = comment_author.avatar.url
+        end
     end
 
     def new
