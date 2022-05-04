@@ -20,10 +20,12 @@
           <p class="fw-light"><b>Страна:</b> <%= @user.country.present? ? @user.country : "Не указана" %></p>
           <p class="fw-light"><b>Город:</b> <%= @user.city.present? ? @user.city : "Не указан" %></p>
           <p class="fw-light"><b>Зарегистрирован:</b> <%= @user.created_at.strftime("%d.%m.%Y в %H:%M") %></p>
-          <% if current_user.id == @user.id %>
-            <div class="row">
-                <%= button_to "Настройки аккаунта", edit_user_registration_url, class: "btn btn-outline-secondary btn-sm", method: :get %>
-            </div>
+          <% if user_signed_in? %>
+            <% if current_user.id == @user.id %>
+              <div class="row">
+                  <%= button_to "Настройки аккаунта", edit_user_registration_url, class: "btn btn-outline-secondary btn-sm", method: :get %>
+              </div>
+            <% end %>
           <% end %>
         </div>
       </div>
