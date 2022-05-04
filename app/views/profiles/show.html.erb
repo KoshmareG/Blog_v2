@@ -1,1 +1,31 @@
-12345
+<div class="row justify-content-md-center">
+    <div class="col col-xs-4 col-lg-6">
+      <div class="card mb-2 shadow">
+        <div class="card-body">
+          <div class="row mb-3">
+            <div class="col">
+              <div style="text-align: center;">
+                <% if @user.avatar.present? %>
+                  <%= image_tag(@user.avatar.variant(resize_to_fill: [120, 120]), class: "avatar-profile-style") %>
+                <% else %>
+                  <%= link_to image_tag("default_avatar.jpeg", size: "120x120", class: "avatar-profile-style"), root_path %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <h5 class="card-title text-center"><%= @user.username %></h5>
+          <p class="fw-light"><b>Email:</b> <%= @user.email %></p>
+          <p class="fw-light"><b>Пол:</b> <%= @user.gender %></p>
+          <p class="fw-light"><b>Дата рождения:</b> <%= @user.birthday %></p>
+          <p class="fw-light"><b>Страна:</b> <%= @user.country %></p>
+          <p class="fw-light"><b>Город:</b> <%= @user.city %></p>
+          <p class="fw-light"><b>Зарегистрирован:</b> <%= @user.created_at.strftime("%d.%m.%Y в %H:%M") %></p>
+          <% if current_user.id == @user.id %>
+            <div class="row">
+                <%= button_to "Настройки аккаунта", edit_user_registration_url, class: "btn btn-outline-secondary btn-sm", method: :get %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+</div>
