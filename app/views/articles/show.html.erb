@@ -50,7 +50,7 @@
                     <%= form_for([@article, @article.comments.build]) do |f| %>
                     <h6 class="card-title">Оставить комментарий</h6>
                     <div class="form-floating mb-2">
-                        <%= f.text_area :body, class: "form-control", id: "floatingPassword", placeholder: "Комментарий" %>
+                        <%= f.text_area :body, class: "form-control", id: "floatingPassword", placeholder: "Комментарий", resize: "vertical, auto" %>
                         <label for="floatingPassword">Комментарий</label>
                     </div>
                         <%= f.button "Отправить", type: "submit", class: "btn btn-outline-success btn-sm" %>
