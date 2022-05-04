@@ -15,10 +15,10 @@
           </div>
           <h5 class="card-title text-center"><%= @user.username %></h5>
           <p class="fw-light"><b>Email:</b> <%= @user.email %></p>
-          <p class="fw-light"><b>Пол:</b> <%= @user.gender %></p>
-          <p class="fw-light"><b>Дата рождения:</b> <%= @user.birthday %></p>
-          <p class="fw-light"><b>Страна:</b> <%= @user.country %></p>
-          <p class="fw-light"><b>Город:</b> <%= @user.city %></p>
+          <p class="fw-light"><b>Пол:</b> <%= @user.gender.present? ? @user.gender : "Не указан" %></p>
+          <p class="fw-light"><b>Дата рождения:</b> <%= @user.birthday.present? ? @user.birthday : "Не указана" %></p>
+          <p class="fw-light"><b>Страна:</b> <%= @user.country.present? ? @user.country : "Не указана" %></p>
+          <p class="fw-light"><b>Город:</b> <%= @user.city.present? ? @user.city : "Не указан" %></p>
           <p class="fw-light"><b>Зарегистрирован:</b> <%= @user.created_at.strftime("%d.%m.%Y в %H:%M") %></p>
           <% if current_user.id == @user.id %>
             <div class="row">
