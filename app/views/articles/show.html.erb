@@ -71,9 +71,9 @@
                     <div class="row">
                         <div class="col-1">
                             <% if comment.username.present? %>
-                                <%= image_tag(image_url(comment.username), size: "45x45", class: "articles-avatar") %>
+                                <%= image_tag(image_url(comment.username), style: "width: 45px; height: 45px; object-fit: cover;", class: "articles-avatar") %>
                             <% else %>
-                                <%= image_tag(image_url("default_avatar.jpeg"), size: "45x45", class: "articles-avatar") %>
+                                <%= image_tag(image_url("default_avatar.jpeg"), style: "width: 45px; height: 45px; object-fit: cover;", class: "articles-avatar") %>
                             <% end %>
                         </div>
                         <div class="col-11">
