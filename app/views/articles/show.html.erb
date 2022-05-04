@@ -4,14 +4,14 @@
             <div class="card mb-2 shadow">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-1">
+                        <div class="col col-sm-2 col-lg-1">
                             <% if @article_author.avatar.present? %>
                                 <%= image_tag(@article_author.avatar.variant(resize_to_fill: [50, 50]), class: "articles-avatar") %>
                             <% else %>
                                 <%= image_tag(image_url("default_avatar.jpeg"), size: "50x50", class: "articles-avatar") %>
                             <% end %>
                         </div>
-                        <div class="col-11">
+                        <div class="col col-sm-10 col-lg-11">
                             <h5 class="card-title"><%= @article.title %></h5>
                             <h6 class="card-subtitle mb-2"><%= link_to @article.username, profile_path(@article.user_id), class: "text-muted", style: "text-decoration: none" %></h6>
                         </div>
@@ -69,14 +69,14 @@
             <div class="card mb-2 shadow">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-1">
+                        <div class="col col-sm-2 col-lg-1">
                             <% if comment.username.present? %>
                                 <%= image_tag(image_url(comment.username), style: "width: 45px; height: 45px; object-fit: cover;", class: "articles-avatar") %>
                             <% else %>
                                 <%= image_tag(image_url("default_avatar.jpeg"), style: "width: 45px; height: 45px; object-fit: cover;", class: "articles-avatar") %>
                             <% end %>
                         </div>
-                        <div class="col-11">
+                        <div class="col col-sm-10 col-lg-11">
                             <h5 class="card-title"><%= link_to comment.author, profile_path(comment.user_id), style: "text-decoration: none; color: black" %></h5>
                             <p class="card-text"><%= comment.body %></p>
                             <div class="row">
