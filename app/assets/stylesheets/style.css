@@ -10,7 +10,7 @@
 .avatar-profile-style{
     border: 2px solid transparent;
     border-radius: 50%;
-    background:linear-gradient(45deg,red, yellow, lime, aqua, blue, magenta, red) border-box;
+    background:linear-gradient(120deg, rgb(11, 224, 239), rgb(71, 220, 101), rgb(254, 188, 82), rgb(169, 33, 110)) border-box;
     box-shadow: 6px 6px 15px gray;
 }
 
