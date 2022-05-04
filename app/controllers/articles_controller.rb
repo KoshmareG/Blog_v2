@@ -6,6 +6,11 @@ class ArticlesController < ApplicationController
 
     def index
         @articles = Article.order 'id desc'
+
+        @articles.each do |article|
+            article_author = User.find(article.user_id)
+            article[:avatar] = article_author.avatar.url
+        end
     end
 
     def show

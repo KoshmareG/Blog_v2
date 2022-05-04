@@ -5,8 +5,19 @@
             <% @articles.each do |art| %>
             <div class="card mb-3 shadow">
                 <div class="card-body">
-                    <h5><%= link_to art.title, article_path(art.id), class: "link-dark", style: "text-decoration: none" %></h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Автор: <%= art.username %></h6>
+                    <div class="row">
+                        <div class="col-1">
+                            <% if art.avatar.present? %>
+                                <%= image_tag(image_url(art.avatar), style: "width: 50px; height: 50px; object-fit: cover;", class: "articles-avatar") %>
+                            <% else %>
+                                <%= image_tag(image_url("default_avatar.jpeg"), style: "width: 50px; height: 50px; object-fit: cover;", class: "articles-avatar") %>
+                            <% end %>
+                        </div>
+                        <div class="col-11">
+                            <h5><%= link_to art.title, article_path(art.id), class: "link-dark", style: "text-decoration: none" %></h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Автор: <%= art.username %></h6>
+                        </div>
+                    </div>
                     <p class="card-text"><%= simple_format(truncate(art.text, length: 800, separator: ' ', omission: ' ... ') {link_to "Читать дальше", article_path(art.id)}) %></p>
                     <div class="row">
                         <div class="col">
