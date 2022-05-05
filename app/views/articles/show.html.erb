@@ -27,7 +27,7 @@
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="articleDropdown">
                                     <li><a>
-                                    <%= link_to 'Редактировать', edit_article_path, class: "dropdown-item", method: :get %>
+                                        <%= link_to 'Редактировать', edit_article_path, class: "dropdown-item", method: :get %>
                                     </a></li>
                                     <li><a>
                                         <%= button_to 'Удалить', article_path, class: "dropdown-item text-danger", method: :delete, form: {data: {turbo_confirm: 'Вы действительно хотите удалить статью?'}} %>
