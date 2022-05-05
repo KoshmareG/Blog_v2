@@ -63,3 +63,10 @@
     border-radius: 10px;
     background-color: #f9f9fd;
 }
+
+.field_with_errors > *,
+.field_with_errors > *:after,
+.field_with_errors > *:before {
+    border-color: rgb(253, 127, 127);
+    border-width: 2px;
+}
