@@ -5,11 +5,12 @@
             <div class="card mb-2 shadow">
                 <div class="card-body">
                     <%= form_for :article, url: articles_path do |f| %>
-                    <label for="exampleFormControlInput1" class="form-label">Заголовок</label>
-                    <h6 class="card-subtitle mb-2 text-muted"><%= f.text_field :title, class: "form-control" %></h6>
-                    <label for="exampleFormControlInput1" class="form-label">Текст статьи</label>
-                    <p class="card-text"><%= f.text_area :text, class: "form-control", rows: "16" %></p>
-                        <%= f.button "Опубликовать", type: "submit", class: "btn btn-outline-success btn-sm" %>
+                    <h5 class="card-title">Заголовок</h5>
+                    <%= f.text_field :title, class: "form-control" %>
+                    <p class="fw-lighter mb-1">Длинна заголовка не должна превышать 130 символов</p>
+                    <h5 class="card-title">Текст статьи</h5>
+                    <%= f.text_area :text, class: "form-control mb-3", rows: "16", id: "scrollbar" %>
+                    <%= f.button "Опубликовать", type: "submit", class: "btn btn-outline-success btn-sm" %>
                     </div>
                     <% end %>
                 </div>
