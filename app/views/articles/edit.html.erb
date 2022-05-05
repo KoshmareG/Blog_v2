@@ -7,8 +7,14 @@
                     <h4 class="card-title">Редактирование статьи</h5>
                     <h5 class="form-label">Заголовок</h6>
                     <%= f.text_field :title, class: "form-control mb-1" %>
+                        <% if @article.errors.present? %> 
+                            <p class="mb-1" style="color: rgb(253, 127, 127)"><%= @article.errors.messages[:title][0] %></p>
+                        <% end %>
                     <h5 class="form-label">Текст статьи</h6>
-                    <%= f.text_area :text, class: "form-control mb-3", rows: "16", id: "scrollbar" %>
+                    <%= f.text_area :text, class: "form-control mb-1", rows: "16", id: "scrollbar" %>
+                        <% if @article.errors.present? %> 
+                            <p class="mb-1" style="color: rgb(253, 127, 127)"><%= @article.errors.messages[:text][0] %></p>
+                        <% end %>
                     <%= f.button "Сохранить", type: "submit", class: "btn btn-outline-success btn-sm" %>
                     </div>
                     <% end %>

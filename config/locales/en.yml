@@ -30,4 +30,8 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  errors:
+    format: "%{message}"
+    messages:
+      too_long: "Максимальная длинна заголовка %{count} символов"
+      blank: "Это поле должно быть заполнено"
