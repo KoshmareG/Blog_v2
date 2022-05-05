@@ -45,8 +45,7 @@ class ArticlesController < ApplicationController
 
     def update
         @article = Article.find(params[:id])
-        if @article.valid?
-            @article.update(title: params[:article][:title], text: params[:article][:text])
+        if @article.update(title: params[:article][:title], text: params[:article][:text])
             redirect_to article_path(@article)
         else
             render action: "edit", status: :unprocessable_entity
