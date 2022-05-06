@@ -1,4 +1,11 @@
 <h3 class="mb-3" style="text-align: center">Лента</h3>
+<div class="digg_pagination">
+    <div class="row justify-content-center mb-3">
+        <div class="col-auto">
+            <%= will_paginate @articles, class: "pagination" %>
+        </div>
+    </div>
+</div>
 <div class="container">
     <div class="row justify-content-md-center">
         <div class="col col-xs-4 col-lg-8">
@@ -27,13 +34,13 @@
                 </div>
             </div>
             <% end %>
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <%= will_paginate @articles, class: "pagination" %>
-
-                </ul>
-              </nav>
-            
+            <div class="digg_pagination">
+                <div class="row justify-content-center">
+                    <div class="col-auto">
+                        <%= will_paginate @articles %>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

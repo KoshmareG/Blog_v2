@@ -70,3 +70,64 @@
     border-color: rgb(253, 127, 127);
     border-width: 2px;
 }
+
+.digg_pagination {
+    background: transparent;
+    cursor: default;
+    /* buttons */ }
+    .digg_pagination a, .digg_pagination span, .digg_pagination em {
+      border-color: transparent;
+      margin-right: 5px; }
+      /* disabled button */
+    .digg_pagination .disabled {
+      color: #adb5bd;
+      padding: 0.3em 0.7em;
+      font-style: normal;
+      border: transparent; }
+      /* select button */
+    .digg_pagination .current {
+      padding: 0.3em 0.7em;
+      border-radius: 4px;
+      font-style: normal;
+      font-weight: bold;
+      background: #0d6efd;
+      color: white;
+      border: 0px; }
+      /* active button */
+    .digg_pagination a {
+      text-decoration: none;
+      padding: 0.3em 0.7em;
+      color: #0d6efd;
+      border: transparent; }
+      /* focus */
+      .digg_pagination a:hover, .digg_pagination a:focus {
+        color: #0d6efd;
+        padding: 0.3em 0.7em;
+        border-radius: 4px;
+        background: #eceef1; }
+        /* self-clearing method: */
+    .digg_pagination .page_info {
+      background: transparent;
+      color: white;
+      padding: 0.4em 0.6em;
+      width: 22em;
+      margin-bottom: 0.3em;
+      text-align: center; }
+      /* self-clearing method: */
+      .digg_pagination .page_info b {
+        color: #000033;
+        background: #6aa6ed;
+        padding: 0.1em 0.25em; }
+        /* self-clearing method: */
+    .digg_pagination:after {
+      content: ".";
+      display: block;
+      height: 0;
+      clear: both;
+      visibility: hidden; }
+      /* self-clearing method: */
+    * html .digg_pagination {
+      height: 1%; }
+    *:first-child + html .digg_pagination {
+      overflow: hidden; 
+  }
