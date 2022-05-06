@@ -27,6 +27,13 @@
                 </div>
             </div>
             <% end %>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <%= will_paginate @articles, class: "pagination" %>
+
+                </ul>
+              </nav>
+            
         </div>
     </div>
 </div>

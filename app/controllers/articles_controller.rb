@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
       end
 
     def index
-        @articles = Article.order 'id desc'
+        @articles = Article.paginate(page: params[:page], per_page: 10)
 
         @articles.each do |article|
             article_author = User.find(article.user_id)
