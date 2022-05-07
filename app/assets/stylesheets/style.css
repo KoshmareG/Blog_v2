@@ -26,7 +26,9 @@
 
 .articles-avatar{
     border-radius: 50%;
-    box-shadow: 3px 3px 10px rgba(25, 25, 25, 0.8);
+    border-width: 10px;
+    border-color: black;
+    box-shadow: 1px 1px 8px rgba(25, 25, 25, 0.8);
 }
 
 .background-gr{
@@ -105,7 +107,6 @@
         padding: 0.3em 0.7em;
         border-radius: 4px;
         background: #eceef1; }
-        /* self-clearing method: */
     .digg_pagination .page_info {
       background: transparent;
       color: white;
@@ -113,19 +114,16 @@
       width: 22em;
       margin-bottom: 0.3em;
       text-align: center; }
-      /* self-clearing method: */
       .digg_pagination .page_info b {
         color: #000033;
         background: #6aa6ed;
         padding: 0.1em 0.25em; }
-        /* self-clearing method: */
     .digg_pagination:after {
       content: ".";
       display: block;
       height: 0;
       clear: both;
       visibility: hidden; }
-      /* self-clearing method: */
     * html .digg_pagination {
       height: 1%; }
     *:first-child + html .digg_pagination {
