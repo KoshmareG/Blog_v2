@@ -1,5 +1,5 @@
 <div class="row justify-content-md-center">
-    <div class="col col-xs-4 col-lg-6">
+    <div class="col col-xs-4 col-lg-8">
       <div class="card mb-2 shadow">
         <div class="card-body">
           <div class="row mb-3">
@@ -27,6 +27,42 @@
               </div>
             <% end %>
           <% end %>
+        </div>
+      </div>
+      <div class="card mb-2 shadow">
+        <div class="card-body">
+          <h5 class="mb-3" style="text-align: center">Публикации <%= @user.username %></h5>
+          <ul class="list-group list-group-flush">
+          <% @articles.each do |article| %>
+            <li class="list-group-item">
+              <h5><%= link_to article.title, article_path(article.id), class: "link-dark", style: "text-decoration: none" %></h5>
+              <div class="row mb-3">
+                <% if user_signed_in? %>
+                    <% if article.user_id == current_user.id %>
+                    <div class="col">
+                        <div class="dropdown">
+                            <a class="text-reset" href="#" role="button" id="articleDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none">
+                            Изменить
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="articleDropdown">
+                                <li><a>
+                                    <%= link_to 'Редактировать', edit_article_path, class: "dropdown-item", method: :get %>
+                                </a></li>
+                                <li><a>
+                                    <%= button_to 'Удалить', article_path, class: "dropdown-item text-danger", method: :delete, form: {data: {turbo_confirm: 'Вы действительно хотите удалить статью?'}} %>
+                                </a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <% end %>
+                <% end %>
+                  <div class="col">
+                      <div style="text-align: end"><%= article.created_at.strftime("%d.%m.%Y в %H:%M") %></div>
+                  </div>
+              </div>
+            </li>
+          <% end %>
+          </ul>
         </div>
       </div>
     </div>
