@@ -43,7 +43,7 @@
                     </div>
                 </div>
             </div>
-            <h4 class="mb-3">Комментарии <%= @comments.size %></h4>
+            <h4 class="mb-3">Комментарии <%= @number_of_comments %></h4>
             <% if user_signed_in? %>
             <div class="card mb-2 shadow">
                 <div class="card-body">
@@ -65,6 +65,13 @@
                 </div>
             </div>
             <% end %>
+            <div class="digg_pagination">
+                <div class="row justify-content-center mb-2">
+                    <div class="col-auto">
+                        <%= will_paginate @comments, inner_window: 1, outer_window: 0 %>
+                    </div>
+                </div>
+            </div>
             <% @comments.reverse_each do |comment| %>
             <div class="card mb-2 shadow">
                 <div class="card-body">
@@ -96,6 +103,13 @@
                 </div>
             </div>
             <% end %>
+            <div class="digg_pagination">
+                <div class="row justify-content-center mb-0">
+                    <div class="col-auto">
+                        <%= will_paginate @comments, inner_window: 1, outer_window: 0 %>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

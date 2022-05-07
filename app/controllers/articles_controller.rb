@@ -15,7 +15,8 @@ class ArticlesController < ApplicationController
 
     def show
         @article = Article.find(params[:id])
-        @comments = @article.comments.where.not(id: nil)
+        @number_of_comments = @article.comments.size
+        @comments = @article.comments.paginate(page: params[:page], per_page: 10)
         @article_author = User.find(@article.user_id)
         
         @comments.each do |comment|
