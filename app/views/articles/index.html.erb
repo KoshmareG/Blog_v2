@@ -1,7 +1,7 @@
 <div class="digg_pagination">
     <div class="row justify-content-center mb-3">
         <div class="col-auto">
-            <%= will_paginate @articles, class: "pagination" %>
+            <%= will_paginate @articles, inner_window: 1, outer_window: 0 %>
         </div>
     </div>
 </div>
@@ -36,7 +36,7 @@
             <div class="digg_pagination">
                 <div class="row justify-content-center">
                     <div class="col-auto">
-                        <%= will_paginate @articles %>
+                        <%= will_paginate @articles, inner_window: 1, outer_window: 0 %>
                     </div>
                 </div>
             </div>
