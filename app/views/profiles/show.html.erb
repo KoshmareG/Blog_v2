@@ -29,6 +29,13 @@
           <% end %>
         </div>
       </div>
+      <div class="digg_pagination">
+        <div class="row justify-content-center mb-2">
+            <div class="col-auto">
+                <%= will_paginate @articles, inner_window: 1, outer_window: 0 %>
+            </div>
+        </div>
+      </div>
       <div class="card mb-2 shadow">
         <div class="card-body">
           <h5 class="mb-3" style="text-align: center">Публикации <%= @user.username %></h5>
