@@ -18,7 +18,13 @@
                     </div>
                     <p class="card-text"><%= simple_format(@article.text) %></p> 
                     <div class="row">
-                        <%= button_to 'like', article_likes_path(@article), method: :post %>
+                        <%= @article.likes.size %>
+                        <% liked = @article.likes.find {|like| like.user_id == current_user.id} %>
+                        <% if liked %>
+                            <%= button_to 'unlike', article_like_path(@article, liked), method: :delete %>
+                        <% else %>
+                            <%= button_to 'like', article_likes_path(@article), method: :post %>
+                        <% end %>
                     <% if user_signed_in? %>
                         <% if @article.user_id == current_user.id %>
                         <div class="col">
