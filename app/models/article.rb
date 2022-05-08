@@ -1,5 +1,6 @@
 class Article < ApplicationRecord
     has_many :comments, :dependent => :delete_all
+    has_many :likes, dependent: :destroy
     belongs_to :user
 
     default_scope {order(id: :desc)}

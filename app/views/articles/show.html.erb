@@ -18,6 +18,7 @@
                     </div>
                     <p class="card-text"><%= simple_format(@article.text) %></p> 
                     <div class="row">
+                        <%= button_to 'like', article_likes_path(@article), method: :post %>
                     <% if user_signed_in? %>
                         <% if @article.user_id == current_user.id %>
                         <div class="col">
