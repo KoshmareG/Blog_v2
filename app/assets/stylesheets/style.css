@@ -24,6 +24,21 @@
     border: none;
 }
 
+.like-button{
+    padding: none;
+    background: transparent;
+    border: none;
+}
+
+.like-form{
+  width: 25px;
+}
+
+.like-font{
+  font-size: 25px;
+  line-height: 26px;
+}
+
 .articles-avatar{
     border-radius: 50%;
     border-width: 10px;

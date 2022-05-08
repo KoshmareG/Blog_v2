@@ -18,16 +18,23 @@
                     </div>
                     <p class="card-text"><%= simple_format(@article.text) %></p> 
                     <div class="row">
-                        <%= @article.likes.size %>
-                        <% liked = @article.likes.find {|like| like.user_id == current_user.id} %>
-                        <% if liked %>
-                            <%= button_to 'unlike', article_like_path(@article, liked), method: :delete %>
-                        <% else %>
-                            <%= button_to 'like', article_likes_path(@article), method: :post %>
-                        <% end %>
+                        <div class="col-auto">
+                            <%= image_tag("Likes.png", size: "25x25") %>
+                        </div>
+                        <div class="col-auto">
+                            <div class="like-font"><%= @article.likes.size %></div>
+                        </div>
+                        <div class="col-auto">
+                            <% liked = @article.likes.find {|like| like.user_id == current_user.id} %>
+                            <% if liked %>
+                                <%= button_to image_tag("Like.png", size: "25x25"), article_like_path(@article, liked), method: :delete, class: "like-button", form_class: "like-form" %>
+                            <% else %>
+                                <%= button_to image_tag("notLike.png", size: "25x25"), article_likes_path(@article), method: :post, class: "like-button", form_class: "like-form" %>
+                            <% end %>
+                        </div>
                     <% if user_signed_in? %>
                         <% if @article.user_id == current_user.id %>
-                        <div class="col">
+                        <div class="col-auto">
                             <div class="dropdown">
                                 <a class="text-reset" href="#" role="button" id="articleDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none">
                                 Изменить
@@ -43,7 +50,7 @@
                             </div>
                         </div>
                         <% end %>
-                    <% end %>
+                        <% end %>
                         <div class="col">
                             <div style="text-align: end"><%= @article.created_at.strftime("%d.%m.%Y в %H:%M") %></div>
                         </div>
