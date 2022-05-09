@@ -103,11 +103,13 @@
                             <h5 class="card-title"><%= link_to comment.author, profile_path(comment.user_id), style: "text-decoration: none; color: black" %></h5>
                             <p class="card-text"><%= comment.body %></p>
                             <div class="row">
+                                <% if @child_comments_raw.where(parent: comment.id).exists? %>
                                 <div class="col-auto">
-                                    <a class="text-reset" style="text-decoration: none" data-bs-toggle="collapse" href="#showAnswer<%= comment.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                    <a class="link" style="text-decoration: none" data-bs-toggle="collapse" href="#showAnswer<%= comment.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
                                         Показать ответы
                                     </a>
                                 </div>
+                                <% end %>
                                 <div class="col-auto">
                                     <a class="text-reset" style="text-decoration: none" data-bs-toggle="collapse" href="#commentAnswer<%= comment.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
                                         Ответить
@@ -129,25 +131,54 @@
                 </div>
                 <div class="collapse" id="commentAnswer<%= comment.id %>">
                     <div class="container">
-                    <% if user_signed_in? %>
-                        <%= form_for([@article, @article.comments.build]) do |f| %>
-                            <%= f.text_area :body, class: "form-control mb-1", id: "floatingPassword", placeholder: "Введите ответ", resize: "vertical, auto" %>
-                            <%= f.hidden_field :parent, :value => comment.id %>
-                            <%= f.button "Отправить", type: "submit", class: "btn btn-outline-success btn-sm mb-1" %>
-                        <% end %>
+                        <div class="row justify-content-center">
+                            <% if user_signed_in? %>
+                            <div class="col-auto">
+                                <% if current_user.avatar.present? %>
+                                    <%= image_tag(current_user.avatar.variant(resize_to_fill: [45, 45]), class: "articles-avatar") %>
+                                <% else %>
+                                    <%= image_tag(image_url("default_avatar.jpeg"), style: "width: 45px; height: 45px; object-fit: cover;", class: "articles-avatar") %>
+                                <% end %>
+                            </div>
+                            <div class="col-10">
+                            <%= form_for([@article, @article.comments.build]) do |f| %>
+                                <%= f.text_area :body, class: "form-control mb-1", id: "floatingPassword", placeholder: "Введите ответ", resize: "vertical, auto" %>
+                                <%= f.hidden_field :parent, :value => comment.id %>
+                                <%= f.button "Отправить", type: "submit", class: "btn btn-outline-success btn-sm mb-1" %>
+                            <% end %>
+                            </div>
+                        </div>
                     </div>
                     <% else %>
                         <h6 style="text-align: center">Чтобы ответить на комментарий необходимо 
                         <%= link_to 'войти', new_user_session_url, method: :get %> или <%= link_to 'заергистрироваться', new_user_registration_url, method: :get %></h6>
                     </div>
+                </div>
                     <% end %>
                 </div>
                 <div class="collapse" id="showAnswer<%= comment.id %>">
                     <div class="container">
-                        <% child_comments = @child_comments.where(parent: comment.id) %>
-                        <% child_comments.each do |child_commnet| %>
-                            <%= child_commnet.body %>
-                        <% end %>
+                        <% @child_comments = @child_comments_raw.where(parent: comment.id) %>
+                        <% child_comments_avatar %>
+                        <ul class="list-group list-group-flush">
+                            <% @child_comments.each do |child_comment| %>
+                                <li class="list-group-item mb-2">
+                                    <div class="row justify-content-center">
+                                        <div class="col-auto">
+                                            <% if child_comment.username.present? %>
+                                                <%= image_tag(image_url(child_comment.username), style: "width: 45px; height: 45px; object-fit: cover;", class: "articles-avatar") %>
+                                            <% else %>
+                                                <%= image_tag(image_url("default_avatar.jpeg"), style: "width: 45px; height: 45px; object-fit: cover;", class: "articles-avatar") %>
+                                            <% end %>
+                                        </div>
+                                        <div class="col-10">
+                                            <h5 class="card-title"><%= link_to child_comment.author, profile_path(child_comment.user_id), style: "text-decoration: none; color: black" %></h5>
+                                            <p class="card-text mb-2"><%= child_comment.body %></p>
+                                        </div>
+                                    </div>
+                                </li>
+                            <% end %>
+                        </ul>
                     </div>
                 </div>
             </div>
