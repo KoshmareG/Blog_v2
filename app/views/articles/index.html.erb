@@ -26,6 +26,20 @@
                     </div>
                     <p class="card-text"><%= simple_format(truncate(art.text, length: 800, separator: ' ', omission: ' ... ') {link_to "Читать дальше", article_path(art.id)}) %></p>
                     <div class="row">
+                        <div class="col-auto">
+                            <%= image_tag("Likes.png", size: "25x25") %>
+                        </div>
+                        <div class="col-auto">
+                            <div class="like-font"><%= art.likes.size %></div>
+                        </div>
+                        <div class="col-auto">
+                            <% liked = art.likes.find {|like| like.user_id == current_user.id} %>
+                            <% if liked %>
+                                <%= button_to image_tag("Like.png", size: "25x25"), article_like_path(art, liked), method: :delete, class: "like-button", form_class: "like-form" %>
+                            <% else %>
+                                <%= button_to image_tag("notLike.png", size: "25x25"), article_likes_path(art), method: :post, class: "like-button", form_class: "like-form" %>
+                            <% end %>
+                        </div>
                         <div class="col">
                             <div style="text-align: end"><%= art.created_at.strftime("%d.%m.%Y в %H:%M") %></div>
                         </div>

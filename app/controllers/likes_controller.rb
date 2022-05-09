@@ -4,14 +4,14 @@ class LikesController < ApplicationController
     def create
         @like = @article.likes.create(user_id: current_user.id)
 
-        redirect_to article_path(@article)
+        redirect_to request.referrer
     end
 
     def destroy
         @like = @article.likes.find(params[:id])
         @like.destroy
 
-        redirect_to article_path(@article)
+        redirect_to request.referrer
     end
 
     private
