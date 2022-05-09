@@ -16,10 +16,16 @@ class ArticlesController < ApplicationController
     def show
         @article = Article.find(params[:id])
         @number_of_comments = @article.comments.size
-        @comments = @article.comments.paginate(page: params[:page], per_page: 10)
+        @comments = @article.comments.where(parent: nil).paginate(page: params[:page], per_page: 10)
+        @child_comments = @article.comments.where.not(parent: nil)
         @article_author = User.find(@article.user_id)
         
         @comments.each do |comment|
+            comment_author = User.find(comment.user_id)
+            comment[:username] = comment_author.avatar.url
+        end
+
+        @child_comments.each do |comment|
             comment_author = User.find(comment.user_id)
             comment[:username] = comment_author.avatar.url
         end

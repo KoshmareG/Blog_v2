@@ -31,12 +31,18 @@
 }
 
 .like-form{
-  width: 25px;
+    width: 25px;
+}
+
+.delete-link{
+  background: transparent;
+  border: none;
+  color: #dc3545;
 }
 
 .like-font{
-  font-size: 25px;
-  line-height: 26px;
+    font-size: 25px;
+    line-height: 26px;
 }
 
 .articles-avatar{

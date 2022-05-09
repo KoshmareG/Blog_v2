@@ -67,7 +67,7 @@
                     <h6 class="card-title">Оставить комментарий</h6>
                     <div class="form-floating mb-2">
                         <%= f.text_area :body, class: "form-control", id: "floatingPassword", placeholder: "Комментарий", resize: "vertical, auto" %>
-                        <label for="floatingPassword">Комментарий</label>
+                        <label>Комментарий</label>
                     </div>
                         <%= f.button "Отправить", type: "submit", class: "btn btn-outline-success btn-sm" %>
                     <% end %>
@@ -88,7 +88,7 @@
                     </div>
                 </div>
             </div>
-            <% @comments.reverse_each do |comment| %>
+            <% @comments.each do |comment| %>
             <div class="card mb-2 shadow">
                 <div class="card-body">
                     <div class="row">
@@ -103,10 +103,20 @@
                             <h5 class="card-title"><%= link_to comment.author, profile_path(comment.user_id), style: "text-decoration: none; color: black" %></h5>
                             <p class="card-text"><%= comment.body %></p>
                             <div class="row">
+                                <div class="col-auto">
+                                    <a class="text-reset" style="text-decoration: none" data-bs-toggle="collapse" href="#showAnswer<%= comment.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                        Показать ответы
+                                    </a>
+                                </div>
+                                <div class="col-auto">
+                                    <a class="text-reset" style="text-decoration: none" data-bs-toggle="collapse" href="#commentAnswer<%= comment.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                        Ответить
+                                    </a>
+                                </div>
                                 <% if user_signed_in? %>
                                     <% if comment.user_id == current_user.id %>
-                                    <div class="col-2">
-                                        <a><%= button_to 'Удалить', [@article, comment], class: "btn btn-outline-danger btn-sm", method: :delete, form: {data: {turbo_confirm: 'Вы действительно хотите удалить комментарий?'}} %></a>
+                                    <div class="col-auto">
+                                        <a><%= button_to 'Удалить', [@article, comment], class: "delete-link", method: :delete, form: {data: {turbo_confirm: 'Вы действительно хотите удалить комментарий?'}} %></a>
                                     </div>
                                     <% end %>
                                 <% end %>
@@ -115,6 +125,29 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="collapse" id="commentAnswer<%= comment.id %>">
+                    <div class="container">
+                    <% if user_signed_in? %>
+                        <%= form_for([@article, @article.comments.build]) do |f| %>
+                            <%= f.text_area :body, class: "form-control mb-1", id: "floatingPassword", placeholder: "Введите ответ", resize: "vertical, auto" %>
+                            <%= f.hidden_field :parent, :value => comment.id %>
+                            <%= f.button "Отправить", type: "submit", class: "btn btn-outline-success btn-sm mb-1" %>
+                        <% end %>
+                    </div>
+                    <% else %>
+                        <h6 style="text-align: center">Чтобы ответить на комментарий необходимо 
+                        <%= link_to 'войти', new_user_session_url, method: :get %> или <%= link_to 'заергистрироваться', new_user_registration_url, method: :get %></h6>
+                    </div>
+                    <% end %>
+                </div>
+                <div class="collapse" id="showAnswer<%= comment.id %>">
+                    <div class="container">
+                        <% child_comments = @child_comments.where(parent: comment.id) %>
+                        <% child_comments.each do |child_commnet| %>
+                            <%= child_commnet.body %>
+                        <% end %>
                     </div>
                 </div>
             </div>
