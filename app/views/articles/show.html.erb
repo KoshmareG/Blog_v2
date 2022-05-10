@@ -140,7 +140,7 @@
                                     <%= image_tag(image_url("default_avatar.jpeg"), style: "width: 45px; height: 45px; object-fit: cover;", class: "articles-avatar") %>
                                 <% end %>
                             </div>
-                            <div class="col-10">
+                            <div class="col">
                             <%= form_for([@article, @article.comments.build]) do |f| %>
                                 <%= f.text_area :body, class: "form-control mb-1", id: "floatingPassword", placeholder: "Введите ответ", resize: "vertical, auto" %>
                                 <%= f.hidden_field :parent, :value => comment.id %>
@@ -163,7 +163,7 @@
                         <ul class="list-group list-group-flush">
                             <% @child_comments.each do |child_comment| %>
                                 <li class="list-group-item mb-2">
-                                    <div class="row justify-content-center">
+                                    <div class="row">
                                         <div class="col-auto">
                                             <% if child_comment.username.present? %>
                                                 <%= image_tag(image_url(child_comment.username), style: "width: 45px; height: 45px; object-fit: cover;", class: "articles-avatar") %>
@@ -171,12 +171,24 @@
                                                 <%= image_tag(image_url("default_avatar.jpeg"), style: "width: 45px; height: 45px; object-fit: cover;", class: "articles-avatar") %>
                                             <% end %>
                                         </div>
-                                        <div class="col-10">
+                                        <div class="col">
                                             <h5 class="card-title"><%= link_to child_comment.author, profile_path(child_comment.user_id), style: "text-decoration: none; color: black" %></h5>
                                             <p class="card-text mb-2"><%= child_comment.body %></p>
+                                            <div class="row">
+                                                <% if user_signed_in? %>
+                                                    <% if child_comment.user_id == current_user.id %>
+                                                    <div class="col-auto">
+                                                        <a><%= button_to 'Удалить', [@article, child_comment], class: "delete-link", method: :delete, form: {data: {turbo_confirm: 'Вы действительно хотите удалить комментарий?'}} %></a>
+                                                    </div>
+                                                    <% end %>
+                                                <% end %>
+                                                <div class="col">
+                                                    <div style="text-align: end"><%= comment.created_at.strftime("%d.%m.%Y в %H:%M") %></div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </li>
+                                </li>  
                             <% end %>
                         </ul>
                     </div>

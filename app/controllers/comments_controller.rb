@@ -17,6 +17,11 @@ class CommentsController < ApplicationController
         @comment = @article.comments.find(params[:id])
         @comment.destroy
 
+        if @article.comments.where(parent: @comment.id).exists?
+            @article.comments.where(parent: @comment.id).destroy_all
+        end
+        
+
         redirect_to article_path(@article)
     end
 
