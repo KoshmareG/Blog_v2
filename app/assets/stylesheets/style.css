@@ -40,7 +40,7 @@
   color: #dc3545;
 }
 
-.like-font{
+.article-down-font{
     font-size: 25px;
     line-height: 26px;
 }
@@ -153,4 +153,8 @@
       height: 1%; }
     *:first-child + html .digg_pagination {
       overflow: hidden; 
+  }
+
+  .comment{
+      margin-left: 100%;
   }

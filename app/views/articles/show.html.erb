@@ -22,7 +22,7 @@
                             <%= image_tag("Likes.png", size: "25x25") %>
                         </div>
                         <div class="col-auto">
-                            <div class="like-font"><%= @article.likes.size %></div>
+                            <div class="article-down-font"><%= @article.likes.size %></div>
                         </div>
                         <div class="col-auto">
                             <% if user_signed_in? %>

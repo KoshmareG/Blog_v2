@@ -24,8 +24,6 @@ class ArticlesController < ApplicationController
             comment_author = User.find(comment.user_id)
             comment[:username] = comment_author.avatar.url
         end
-
-        
     end
 
     def new

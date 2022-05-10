@@ -30,7 +30,7 @@
                             <%= image_tag("Likes.png", size: "25x25") %>
                         </div>
                         <div class="col-auto">
-                            <div class="like-font"><%= art.likes.size %></div>
+                            <div class="article-down-font"><%= art.likes.size %></div>
                         </div>
                         <div class="col-auto">
                             <% if user_signed_in? %>
@@ -41,6 +41,12 @@
                                     <%= button_to image_tag("notLike.png", size: "25x25"), article_likes_path(art), method: :post, class: "like-button", form_class: "like-form" %>
                                 <% end %>
                             <% end %>
+                        </div>
+                        <div class="col-auto">
+                            <%= image_tag("comments.png", size: "25x25", class: "comment") %>
+                        </div>
+                        <div class="col-auto">
+                            <div class="article-down-font comment"><%= art.comments.size %></div>
                         </div>
                         <div class="col">
                             <div style="text-align: end"><%= art.created_at.strftime("%d.%m.%Y в %H:%M") %></div>
