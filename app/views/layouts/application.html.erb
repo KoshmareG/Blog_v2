@@ -25,47 +25,43 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav fw-light">
               <li class="nav-item">
-                <%= link_to 'Главная', home_index_url, class: "nav-link active mx-auto text-center" %>
+                <%= link_to_home %>
               </li>
               <li class="nav-item">
-                <%= link_to 'Лента', articles_path, class: "nav-link active mx-auto text-center" %>
+                <%= link_to_feed %>
               </li>
               <li class="nav-item">
-                <%= link_to 'Новая статья', new_article_url, class: "nav-link active mx-auto text-center" %>
+                <%= link_to_new_article %>
               </li>
               <li class="nav-item">
-                <%= link_to 'Соглашение', terms_url, class: "nav-link active mx-auto text-center" %>
+                <%= link_to_terms %>
               </li>
               <li class="nav-item dropdown">
                 <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <% if user_signed_in? %>
-                  <% if current_user.avatar.present? %>
-                    <%= button_tag image_tag(current_user.avatar.variant(resize_to_fill: [30, 30]), class: "avatar-navbar-style"), class: "profile-button" %>
-                  <% else %>
-                    <%= button_to image_tag("default_avatar.jpeg", size: "30x30", class: "avatar-navbar-style"), root_path, class: "profile-button" %>
-                  <% end %>
+                  <%= user_avatar_navbar %>
                 </a>
                 <ul class="dropdown-menu dropdown-navbar-blur translate-middle-x">
                   <div class="container-fluid fw-light">
                     <h5 class="link-light"><%= current_user.username %></h5>
                     <li>
-                      <%= link_to 'Мой профиль', profile_path(current_user.id), class: "link-light lh-base", style: "text-decoration: none" %>
+                      <%= link_to_user_profile %>
                     </li>
                     <li>
-                      <%= link_to 'Выйти', destroy_user_session_url, data: { turbo_method: :delete }, class: "link-light lh-base", style: "text-decoration: none" %>
+                      <%= link_to_destroy_user_session %>
                     </li>
                   </div>
                 </ul>
                 <% else %>
-                  <%= button_to image_tag("default_avatar.jpeg", size: "30x30", class: "avatar-navbar-style"), root_path, class: "profile-button" %>
+                  <%= default_avatar_navbar %>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark">
                   <div class="container-fluid fw-light">
                     <li>
-                      <%= link_to 'Вход', new_user_session_url, method: :get, class: "link-light lh-base", style: "text-decoration: none" %>
+                      <%= link_to_new_destroy_user_session_url %>
                     </li>
                     <li>
-                      <%= link_to "Регистрация", new_user_registration_url, class: "link-light lh-base", style: "text-decoration: none" %>
+                      <%= link_to_new_destroy_user_session %>
                     </li>
                   </div>
                 </ul>
