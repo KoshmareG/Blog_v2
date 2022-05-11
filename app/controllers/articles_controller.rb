@@ -1,8 +1,13 @@
 class ArticlesController < ApplicationController
     before_action :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy]
+
     before_action do
         ActiveStorage::Current.host = request.base_url
-      end
+    end
+
+    before_action :only => [:show, :edit, :update, :destroy] do
+        @article = Article.find(params[:id])
+    end
 
     def index
         @articles = Article.paginate(page: params[:page], per_page: 10)
@@ -14,16 +19,10 @@ class ArticlesController < ApplicationController
     end
 
     def show
-        @article = Article.find(params[:id])
         @number_of_comments = @article.comments.size
         @comments = @article.comments.where(parent: nil).paginate(page: params[:page], per_page: 10)
         @child_comments_raw = @article.comments.where.not(parent: nil)
         @article_author = User.find(@article.user_id)
-        
-        @comments.each do |comment|
-            comment_author = User.find(comment.user_id)
-            comment[:username] = comment_author.avatar.url
-        end
     end
 
     def new
@@ -43,11 +42,9 @@ class ArticlesController < ApplicationController
     end
 
     def edit
-        @article = Article.find(params[:id])
     end
 
     def update
-        @article = Article.find(params[:id])
         if @article.update(title: params[:article][:title], text: params[:article][:text])
             redirect_to article_path(@article)
         else
@@ -56,7 +53,6 @@ class ArticlesController < ApplicationController
     end
 
     def destroy
-        @article = Article.find(params[:id])
         @article.destroy
         redirect_to articles_path
     end

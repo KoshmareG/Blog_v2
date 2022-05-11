@@ -5,15 +5,11 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-auto">
-                            <% if @article_author.avatar.present? %>
-                                <%= image_tag(@article_author.avatar.variant(resize_to_fill: [50, 50]), class: "articles-avatar") %>
-                            <% else %>
-                                <%= image_tag(image_url("default_avatar.jpeg"), size: "50x50", class: "articles-avatar") %>
-                            <% end %>
+                            <%= article_user_avatar %>
                         </div>
                         <div class="col">
                             <h5 class="card-title"><%= @article.title %></h5>
-                            <h6 class="card-subtitle mb-2"><%= link_to @article.username, profile_path(@article.user_id), class: "text-muted", style: "text-decoration: none" %></h6>
+                            <h6 class="card-subtitle mb-2"><%= article_author_link %></h6>
                         </div>
                     </div>
                     <p class="card-text"><%= simple_format(@article.text) %></p> 
@@ -25,36 +21,29 @@
                             <div class="article-down-font"><%= @article.likes.size %></div>
                         </div>
                         <div class="col-auto">
-                            <% if user_signed_in? %>
-                                <% liked = @article.likes.find {|like| like.user_id == current_user.id} %>
-                                <% if liked %>
-                                    <%= button_to image_tag("Like.png", size: "25x25"), article_like_path(@article, liked), method: :delete, class: "like-button", form_class: "like-form" %>
-                                <% else %>
-                                    <%= button_to image_tag("notLike.png", size: "25x25"), article_likes_path(@article), method: :post, class: "like-button", form_class: "like-form" %>
-                                <% end %>
-                            <% end %>
+                            <%= article_like_button %>
                         </div>
-                    <% if user_signed_in? %>
-                        <% if @article.user_id == current_user.id %>
-                        <div class="col-auto">
-                            <div class="dropdown">
-                                <a class="text-reset" href="#" role="button" id="articleDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none">
-                                Изменить
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="articleDropdown">
-                                    <li><a>
-                                        <%= link_to 'Редактировать', edit_article_path, class: "dropdown-item", method: :get %>
-                                    </a></li>
-                                    <li><a>
-                                        <%= button_to 'Удалить', article_path, class: "dropdown-item text-danger", method: :delete, form: {data: {turbo_confirm: 'Вы действительно хотите удалить статью?'}} %>
-                                    </a></li>
-                                </ul>
+                        <% if user_signed_in? %>
+                            <% if @article.user_id == current_user.id %>
+                            <div class="col-auto">
+                                <div class="dropdown">
+                                    <a class="text-reset" href="#" role="button" id="articleDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none">
+                                    Изменить
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="articleDropdown">
+                                        <li><a>
+                                            <%= article_edit_link %>
+                                        </a></li>
+                                        <li><a>
+                                            <%= article_delete_link %>
+                                        </a></li>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                        <% end %>
+                            <% end %>
                         <% end %>
                         <div class="col">
-                            <div style="text-align: end"><%= @article.created_at.strftime("%d.%m.%Y в %H:%M") %></div>
+                            <div style="text-align: end"><%= create_show @article %></div>
                         </div>
                     </div>
                 </div>
@@ -77,7 +66,7 @@
             <div class="card mb-2 shadow">
                 <div class="card-body">
                     <h6 style="text-align: center">Чтобы оставить комментарий необходимо 
-                    <%= link_to 'войти', new_user_session_url, method: :get %> или <%= link_to 'заергистрироваться', new_user_registration_url, method: :get %></h6>
+                    <%= new_user_session %> или <%= new_user_registration %></h6>
                 </div>
             </div>
             <% end %>
@@ -88,19 +77,16 @@
                     </div>
                 </div>
             </div>
+            <% comments_avatar @comments %>
             <% @comments.each do |comment| %>
             <div class="card mb-2 shadow">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-auto">
-                            <% if comment.username.present? %>
-                                <%= image_tag(image_url(comment.username), style: "width: 45px; height: 45px; object-fit: cover;", class: "articles-avatar") %>
-                            <% else %>
-                                <%= image_tag(image_url("default_avatar.jpeg"), style: "width: 45px; height: 45px; object-fit: cover;", class: "articles-avatar") %>
-                            <% end %>
+                            <%= article_comment_avatar comment %>
                         </div>
                         <div class="col">
-                            <h5 class="card-title"><%= link_to comment.author, profile_path(comment.user_id), style: "text-decoration: none; color: black" %></h5>
+                            <h5 class="card-title"><%= comment_author_link comment %></h5>
                             <p class="card-text"><%= comment.body %></p>
                             <div class="row">
                                 <% if @child_comments_raw.where(parent: comment.id).exists? %>
@@ -118,12 +104,12 @@
                                 <% if user_signed_in? %>
                                     <% if comment.user_id == current_user.id %>
                                     <div class="col-auto">
-                                        <a><%= button_to 'Удалить', [@article, comment], class: "delete-link", method: :delete, form: {data: {turbo_confirm: 'Вы действительно хотите удалить комментарий?'}} %></a>
+                                        <a><%= delete_comment_button comment %></a>
                                     </div>
                                     <% end %>
                                 <% end %>
                                 <div class="col">
-                                    <div style="text-align: end"><%= comment.created_at.strftime("%d.%m.%Y в %H:%M") %></div>
+                                    <div style="text-align: end"><%= create_show comment %></div>
                                 </div>
                             </div>
                         </div>
@@ -134,11 +120,7 @@
                         <div class="row justify-content-center">
                             <% if user_signed_in? %>
                             <div class="col-auto">
-                                <% if current_user.avatar.present? %>
-                                    <%= image_tag(current_user.avatar.variant(resize_to_fill: [45, 45]), class: "articles-avatar") %>
-                                <% else %>
-                                    <%= image_tag(image_url("default_avatar.jpeg"), style: "width: 45px; height: 45px; object-fit: cover;", class: "articles-avatar") %>
-                                <% end %>
+                                <%= current_user_avatar %>
                             </div>
                             <div class="col">
                             <%= form_for([@article, @article.comments.build]) do |f| %>
@@ -151,7 +133,7 @@
                     </div>
                     <% else %>
                         <h6 style="text-align: center">Чтобы ответить на комментарий необходимо 
-                        <%= link_to 'войти', new_user_session_url, method: :get %> или <%= link_to 'заергистрироваться', new_user_registration_url, method: :get %></h6>
+                        <%= new_user_session %> или <%= new_user_registration %></h6>
                     </div>
                 </div>
                     <% end %>
@@ -159,31 +141,27 @@
                 <div class="collapse" id="showAnswer<%= comment.id %>">
                     <div class="container">
                         <% @child_comments = @child_comments_raw.where(parent: comment.id) %>
-                        <% child_comments_avatar %>
+                        <% comments_avatar @child_comments %>
                         <ul class="list-group list-group-flush">
                             <% @child_comments.each do |child_comment| %>
                                 <li class="list-group-item mb-2">
                                     <div class="row">
                                         <div class="col-auto">
-                                            <% if child_comment.username.present? %>
-                                                <%= image_tag(image_url(child_comment.username), style: "width: 45px; height: 45px; object-fit: cover;", class: "articles-avatar") %>
-                                            <% else %>
-                                                <%= image_tag(image_url("default_avatar.jpeg"), style: "width: 45px; height: 45px; object-fit: cover;", class: "articles-avatar") %>
-                                            <% end %>
+                                            <%= article_comment_avatar child_comment %>
                                         </div>
                                         <div class="col">
-                                            <h5 class="card-title"><%= link_to child_comment.author, profile_path(child_comment.user_id), style: "text-decoration: none; color: black" %></h5>
+                                            <h5 class="card-title"><%= comment_author_link child_comment %></h5>
                                             <p class="card-text mb-2"><%= child_comment.body %></p>
                                             <div class="row">
                                                 <% if user_signed_in? %>
                                                     <% if child_comment.user_id == current_user.id %>
                                                     <div class="col-auto">
-                                                        <a><%= button_to 'Удалить', [@article, child_comment], class: "delete-link", method: :delete, form: {data: {turbo_confirm: 'Вы действительно хотите удалить комментарий?'}} %></a>
+                                                        <a><%= delete_comment_button child_comment %></a>
                                                     </div>
                                                     <% end %>
                                                 <% end %>
                                                 <div class="col">
-                                                    <div style="text-align: end"><%= comment.created_at.strftime("%d.%m.%Y в %H:%M") %></div>
+                                                    <div style="text-align: end"><%= create_show child_comment %></div>
                                                 </div>
                                             </div>
                                         </div>
