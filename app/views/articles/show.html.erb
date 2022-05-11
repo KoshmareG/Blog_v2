@@ -53,11 +53,7 @@
             <div class="card mb-2 shadow">
                 <div class="card-body">
                     <%= form_for([@article, @article.comments.build]) do |f| %>
-                    <h6 class="card-title">Оставить комментарий</h6>
-                    <div class="form-floating mb-2">
-                        <%= f.text_area :body, class: "form-control", id: "floatingPassword", placeholder: "Комментарий", resize: "vertical, auto" %>
-                        <label>Комментарий</label>
-                    </div>
+                        <%= f.text_area :body, class: "form-control mb-2", placeholder: "Комментарий", resize: "vertical, auto" %>
                         <%= f.button "Отправить", type: "submit", class: "btn btn-outline-success btn-sm" %>
                     <% end %>
                 </div>
@@ -124,9 +120,9 @@
                             </div>
                             <div class="col">
                             <%= form_for([@article, @article.comments.build]) do |f| %>
-                                <%= f.text_area :body, class: "form-control mb-1", id: "floatingPassword", placeholder: "Введите ответ", resize: "vertical, auto" %>
-                                <%= f.hidden_field :parent, :value => comment.id %>
-                                <%= f.button "Отправить", type: "submit", class: "btn btn-outline-success btn-sm mb-1" %>
+                                    <%= f.text_area :body, class: "form-control mb-1", placeholder: "Введите ответ", resize: "vertical, auto" %>
+                                    <%= f.hidden_field :parent, :value => comment.id %>
+                                    <%= f.button "Отправить", type: "submit", class: "btn btn-outline-success btn-sm mb-1" %>
                             <% end %>
                             </div>
                         </div>
