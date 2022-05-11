@@ -9,7 +9,7 @@
                         </div>
                         <div class="col">
                             <h5 class="card-title"><%= @article.title %></h5>
-                            <h6 class="card-subtitle mb-2"><%= article_author_link %></h6>
+                            <h6 class="card-subtitle mb-2"><%= article_author_link @article %></h6>
                         </div>
                     </div>
                     <p class="card-text"><%= simple_format(@article.text) %></p> 
@@ -21,7 +21,7 @@
                             <div class="article-down-font"><%= @article.likes.size %></div>
                         </div>
                         <div class="col-auto">
-                            <%= article_like_button %>
+                            <%= article_like_button @article %>
                         </div>
                         <% if user_signed_in? %>
                             <% if @article.user_id == current_user.id %>

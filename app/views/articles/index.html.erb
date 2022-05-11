@@ -8,48 +8,37 @@
 <div class="container">
     <div class="row justify-content-md-center">
         <div class="col col-xs-4 col-lg-8">
-            <% @articles.each do |art| %>
+            <% @articles.each do |article| %>
             <div class="card mb-3 shadow">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-auto">
-                            <% if art.avatar.present? %>
-                                <%= image_tag(image_url(art.avatar), style: "width: 50px; height: 50px; object-fit: cover;", class: "articles-avatar") %>
-                            <% else %>
-                                <%= image_tag(image_url("default_avatar.jpeg"), style: "width: 50px; height: 50px; object-fit: cover;", class: "articles-avatar") %>
-                            <% end %>
+                            <%= article_user_avatar_index article %>
                         </div>
                         <div class="col">
-                            <h5><%= link_to art.title, article_path(art.id), class: "link-dark", style: "text-decoration: none" %></h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Автор: <%= link_to art.username, profile_path(art.user_id), class: "text-muted", style: "text-decoration: none" %></h6>
+                            <h5><%= link_to_article article %></h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Автор: <%= article_author_link article %></h6>
                         </div>
                     </div>
-                    <p class="card-text"><%= simple_format(truncate(art.text, length: 800, separator: ' ', omission: ' ... ') {link_to "Читать дальше", article_path(art.id)}) %></p>
+                    <p class="card-text"><%= article_text_preview article %></p>
                     <div class="row">
                         <div class="col-auto">
                             <%= image_tag("Likes.png", size: "25x25") %>
                         </div>
                         <div class="col-auto">
-                            <div class="article-down-font"><%= art.likes.size %></div>
+                            <div class="article-down-font"><%= article.likes.size %></div>
                         </div>
                         <div class="col-auto">
-                            <% if user_signed_in? %>
-                                <% liked = art.likes.find {|like| like.user_id == current_user.id} %>
-                                <% if liked %>
-                                    <%= button_to image_tag("Like.png", size: "25x25"), article_like_path(art, liked), method: :delete, class: "like-button", form_class: "like-form" %>
-                                <% else %>
-                                    <%= button_to image_tag("notLike.png", size: "25x25"), article_likes_path(art), method: :post, class: "like-button", form_class: "like-form" %>
-                                <% end %>
-                            <% end %>
+                            <%= article_like_button article %>
                         </div>
                         <div class="col-auto">
                             <%= image_tag("comments.png", size: "25x25", class: "comment") %>
                         </div>
                         <div class="col-auto">
-                            <div class="article-down-font"><%= art.comments.size %></div>
+                            <div class="article-down-font"><%= article.comments.size %></div>
                         </div>
                         <div class="col">
-                            <div style="text-align: end"><%= art.created_at.strftime("%d.%m.%Y") %></div>
+                            <div style="text-align: end"><%= article.created_at.strftime("%d.%m.%Y") %></div>
                         </div>
                     </div>  
                 </div>

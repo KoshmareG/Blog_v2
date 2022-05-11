@@ -8,17 +8,33 @@ module ArticlesHelper
         end
     end
 
-    def article_author_link
-        link_to @article.username, profile_path(@article.user_id), class: "text-muted", style: "text-decoration: none"
+    def article_user_avatar_index article
+        if article.avatar.present?
+            image_tag(image_url(article.avatar), style: "width: 50px; height: 50px; object-fit: cover;", class: "articles-avatar")
+        else
+            image_tag(image_url("default_avatar.jpeg"), style: "width: 50px; height: 50px; object-fit: cover;", class: "articles-avatar")
+        end
     end
 
-    def article_like_button
+    def link_to_article article
+        link_to article.title, article_path(article.id), class: "link-dark", style: "text-decoration: none"
+    end
+
+    def article_author_link article
+        link_to article.username, profile_path(article.user_id), class: "text-muted", style: "text-decoration: none"
+    end
+
+    def article_text_preview article
+        simple_format(truncate(article.text, length: 800, separator: ' ', omission: ' ... ') {link_to "Читать дальше", article_path(article.id)})
+    end
+
+    def article_like_button article
         if user_signed_in?
-            liked = @article.likes.find {|like| like.user_id == current_user.id}
+            liked = article.likes.find {|like| like.user_id == current_user.id}
             if liked
-                button_to image_tag("Like.png", size: "25x25"), article_like_path(@article, liked), method: :delete, class: "like-button", form_class: "like-form"
+                button_to image_tag("Like.png", size: "25x25"), article_like_path(article, liked), method: :delete, class: "like-button", form_class: "like-form"
             else
-                button_to image_tag("notLike.png", size: "25x25"), article_likes_path(@article), method: :post, class: "like-button", form_class: "like-form"
+                button_to image_tag("notLike.png", size: "25x25"), article_likes_path(article), method: :post, class: "like-button", form_class: "like-form"
             end
         end
     end
