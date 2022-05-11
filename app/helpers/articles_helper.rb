@@ -1,5 +1,9 @@
 module ArticlesHelper
 
+    def default_avatar
+        image_tag(image_url("default_avatar.jpeg"), style: "width: 45px; height: 45px; object-fit: cover;", class: "articles-avatar")
+    end
+
     def article_user_avatar
         if @article_author.avatar.present?
             image_tag(@article_author.avatar.variant(resize_to_fill: [50, 50]), class: "articles-avatar")
@@ -70,7 +74,7 @@ module ArticlesHelper
         if comment.username.present?
             image_tag(image_url(comment.username), style: "width: 45px; height: 45px; object-fit: cover;", class: "articles-avatar")
         else
-            image_tag(image_url("default_avatar.jpeg"), style: "width: 45px; height: 45px; object-fit: cover;", class: "articles-avatar")
+            default_avatar
         end
     end
 
@@ -86,7 +90,7 @@ module ArticlesHelper
         if current_user.avatar.present?
             image_tag(current_user.avatar.variant(resize_to_fill: [45, 45]), class: "articles-avatar")
         else
-            image_tag(image_url("default_avatar.jpeg"), style: "width: 45px; height: 45px; object-fit: cover;", class: "articles-avatar")
+            default_avatar
         end
     end
 
