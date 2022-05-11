@@ -5,11 +5,7 @@
           <div class="row mb-3">
             <div class="col">
               <div style="text-align: center;">
-                <% if @user.avatar.present? %>
-                  <%= image_tag(@user.avatar.variant(resize_to_fill: [120, 120]), class: "avatar-profile-style") %>
-                <% else %>
-                  <%= link_to image_tag("default_avatar.jpeg", size: "120x120", class: "avatar-profile-style"), root_path %>
-                <% end %>
+                <%= user_avatar %>
               </div>
             </div>
           </div>
@@ -23,7 +19,7 @@
           <% if user_signed_in? %>
             <% if current_user.id == @user.id %>
               <div class="row">
-                  <%= button_to "Настройки аккаунта", edit_user_registration_url, class: "btn btn-outline-secondary btn-sm", method: :get %>
+                  <%= delete_account_button %>
               </div>
             <% end %>
           <% end %>
@@ -42,7 +38,7 @@
           <ul class="list-group list-group-flush">
           <% @articles.each do |article| %>
             <li class="list-group-item">
-              <h5><%= link_to article.title, article_path(article.id), class: "link-dark", style: "text-decoration: none" %></h5>
+              <h5><%= article_title article %></h5>
               <div class="row mb-3">
                 <% if user_signed_in? %>
                     <% if article.user_id == current_user.id %>
@@ -53,10 +49,10 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="articleDropdown">
                                 <li><a>
-                                    <%= link_to 'Редактировать', edit_article_path, class: "dropdown-item", method: :get %>
+                                    <%= link_to_edit_article %>
                                 </a></li>
                                 <li><a>
-                                    <%= button_to 'Удалить', article_path, class: "dropdown-item text-danger", method: :delete, form: {data: {turbo_confirm: 'Вы действительно хотите удалить статью?'}} %>
+                                    <%= delete_article_button %>
                                 </a></li>
                             </ul>
                         </div>
