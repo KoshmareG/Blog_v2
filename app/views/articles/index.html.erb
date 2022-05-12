@@ -8,6 +8,7 @@
 <div class="container">
     <div class="row justify-content-md-center">
         <div class="col col-xs-4 col-lg-8">
+            <% add_user_avatar @articles %>
             <% @articles.each do |article| %>
             <div class="card mb-3 shadow">
                 <div class="card-body">

@@ -11,11 +11,6 @@ class ArticlesController < ApplicationController
 
     def index
         @articles = Article.paginate(page: params[:page], per_page: 10)
-
-        @articles.each do |article|
-            article_author = User.find(article.user_id)
-            article[:avatar] = article_author.avatar.url
-        end
     end
 
     def show

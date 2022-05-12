@@ -63,16 +63,16 @@ module ArticlesHelper
         link_to 'заергистрироваться', new_user_registration_url, method: :get
     end
 
-    def comments_avatar comments
-        comments.each do |comment|
-            comment_author = User.find(comment.user_id)
-            comment[:username] = comment_author.avatar.url
+    def add_user_avatar items
+        items.each do |item|
+            item_author = User.find(item.user_id)
+            item[:avatar] = item_author.avatar.url
         end
     end
 
     def article_comment_avatar comment
-        if comment.username.present?
-            image_tag(image_url(comment.username), style: "width: 45px; height: 45px; object-fit: cover;", class: "articles-avatar")
+        if comment.avatar.present?
+            image_tag(image_url(comment.avatar), style: "width: 45px; height: 45px; object-fit: cover;", class: "articles-avatar")
         else
             default_avatar
         end

@@ -73,7 +73,7 @@
                     </div>
                 </div>
             </div>
-            <% comments_avatar @comments %>
+            <% add_user_avatar @comments %>
             <% @comments.each do |comment| %>
             <div class="card mb-2 shadow">
                 <div class="card-body">
@@ -137,7 +137,7 @@
                 <div class="collapse" id="showAnswer<%= comment.id %>">
                     <div class="container">
                         <% @child_comments = @child_comments_raw.where(parent: comment.id) %>
-                        <% comments_avatar @child_comments %>
+                        <% add_user_avatar @child_comments %>
                         <ul class="list-group list-group-flush">
                             <% @child_comments.each do |child_comment| %>
                                 <li class="list-group-item mb-2">
