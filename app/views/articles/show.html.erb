@@ -73,102 +73,12 @@
                     </div>
                 </div>
             </div>
-            <% add_user_avatar @comments %>
-            <% @comments.each do |comment| %>
-            <div class="card mb-2 shadow">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-auto">
-                            <%= article_comment_avatar comment %>
-                        </div>
-                        <div class="col">
-                            <h5 class="card-title"><%= comment_author_link comment %></h5>
-                            <p class="card-text"><%= comment.body %></p>
-                            <div class="row">
-                                <% if @child_comments_raw.where(parent: comment.id).exists? %>
-                                <div class="col-auto">
-                                    <a class="link" style="text-decoration: none" data-bs-toggle="collapse" href="#showAnswer<%= comment.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                        Показать ответы
-                                    </a>
-                                </div>
-                                <% end %>
-                                <div class="col-auto">
-                                    <a class="text-reset" style="text-decoration: none" data-bs-toggle="collapse" href="#commentAnswer<%= comment.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                        Ответить
-                                    </a>
-                                </div>
-                                <% if user_signed_in? %>
-                                    <% if comment.user_id == current_user.id %>
-                                    <div class="col-auto">
-                                        <a><%= delete_comment_button comment %></a>
-                                    </div>
-                                    <% end %>
-                                <% end %>
-                                <div class="col">
-                                    <div style="text-align: end"><%= create_show comment %></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="collapse" id="commentAnswer<%= comment.id %>">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <% if user_signed_in? %>
-                            <div class="col-auto">
-                                <%= current_user_avatar %>
-                            </div>
-                            <div class="col">
-                            <%= form_for([@article, @article.comments.build]) do |f| %>
-                                    <%= f.text_area :body, class: "form-control mb-1", placeholder: "Введите ответ", resize: "vertical, auto" %>
-                                    <%= f.hidden_field :parent, :value => comment.id %>
-                                    <%= f.button "Отправить", type: "submit", class: "btn btn-outline-success btn-sm mb-1" %>
-                            <% end %>
-                            </div>
-                        </div>
-                    </div>
-                    <% else %>
-                        <h6 style="text-align: center">Чтобы ответить на комментарий необходимо 
-                        <%= new_user_session %> или <%= new_user_registration %></h6>
-                    </div>
-                </div>
-                    <% end %>
-                </div>
-                <div class="collapse" id="showAnswer<%= comment.id %>">
-                    <div class="container">
-                        <% @child_comments = @child_comments_raw.where(parent: comment.id) %>
-                        <% add_user_avatar @child_comments %>
-                        <ul class="list-group list-group-flush">
-                            <% @child_comments.each do |child_comment| %>
-                                <li class="list-group-item mb-2">
-                                    <div class="row">
-                                        <div class="col-auto">
-                                            <%= article_comment_avatar child_comment %>
-                                        </div>
-                                        <div class="col">
-                                            <h5 class="card-title"><%= comment_author_link child_comment %></h5>
-                                            <p class="card-text mb-2"><%= child_comment.body %></p>
-                                            <div class="row">
-                                                <% if user_signed_in? %>
-                                                    <% if child_comment.user_id == current_user.id %>
-                                                    <div class="col-auto">
-                                                        <a><%= delete_comment_button child_comment %></a>
-                                                    </div>
-                                                    <% end %>
-                                                <% end %>
-                                                <div class="col">
-                                                    <div style="text-align: end"><%= create_show child_comment %></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>  
-                            <% end %>
-                        </ul>
-                    </div>
-                </div>
+            <div id="comment_pane">
+                <% add_user_avatar @comments %>
+                <% @comments.each do |comment| %>
+                    <%= render 'comments', comment: comment %>
+                <% end %>
             </div>
-            <% end %>
             <div class="digg_pagination">
                 <div class="row justify-content-center mb-0">
                     <div class="col-auto">
