@@ -22,26 +22,9 @@
                         </div>
                     </div>
                     <p class="card-text"><%= article_text_preview article %></p>
-                    <div class="row">
-                        <div class="col-auto">
-                            <%= image_tag("Likes.png", size: "25x25") %>
-                        </div>
-                        <div class="col-auto">
-                            <div class="article-down-font"><%= article.likes.size %></div>
-                        </div>
-                        <div class="col-auto">
-                            <%= article_like_button article %>
-                        </div>
-                        <div class="col-auto">
-                            <%= image_tag("comments.png", size: "25x25", class: "comment") %>
-                        </div>
-                        <div class="col-auto">
-                            <div class="article-down-font"><%= article.comments.size %></div>
-                        </div>
-                        <div class="col">
-                            <div style="text-align: end"><%= article.created_at.strftime("%d.%m.%Y") %></div>
-                        </div>
-                    </div>  
+                    <turbo-frame id="likes<%= article.id %>">
+                        <%= render 'index_likes', article: article %>
+                    </turbo-frame>
                 </div>
             </div>
             <% end %>
