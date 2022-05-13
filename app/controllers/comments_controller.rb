@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
 
         @comment.save
 
-        redirect_to article_path(@article)
+        redirect_back(fallback_location: root_path)
     end
 
     def destroy
@@ -22,7 +22,7 @@ class CommentsController < ApplicationController
         end
         
 
-        redirect_to article_path(@article)
+        redirect_back(fallback_location: root_path)
     end
 
     private

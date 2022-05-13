@@ -13,79 +13,49 @@
                         </div>
                     </div>
                     <p class="card-text"><%= simple_format(@article.text) %></p> 
-                    <div class="row">
-                        <div class="col-auto">
-                            <%= image_tag("Likes.png", size: "25x25") %>
-                        </div>
-                        <div class="col-auto">
-                            <div class="article-down-font"><%= @article.likes.size %></div>
-                        </div>
-                        <div class="col-auto">
-                            <%= article_like_button @article %>
-                        </div>
-                        <% if user_signed_in? %>
-                            <% if @article.user_id == current_user.id %>
-                            <div class="col-auto">
-                                <div class="dropdown">
-                                    <a class="text-reset" href="#" role="button" id="articleDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none">
-                                    Изменить
-                                    </a>
-                                    <ul class="dropdown-menu" aria-labelledby="articleDropdown">
-                                        <li><a>
-                                            <%= article_edit_link %>
-                                        </a></li>
-                                        <li><a>
-                                            <%= article_delete_link %>
-                                        </a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <% end %>
+                    <turbo-frame id="likes">
+                        <%= render 'likes' %>
+                    </turbo-frame>
+                </div>
+            </div>
+            <turbo-frame id="comments">
+                <h4 class="mb-3">Комментарии <%= @number_of_comments %></h4>
+                <% if user_signed_in? %>
+                <div class="card mb-2 shadow">
+                    <div class="card-body">
+                        <%= form_for([@article, @article.comments.build]) do |f| %>
+                            <%= f.text_area :body, class: "form-control mb-2", placeholder: "Комментарий", resize: "vertical, auto" %>
+                            <%= f.button "Отправить", type: "submit", return: false, class: "btn btn-outline-success btn-sm" %>
                         <% end %>
-                        <div class="col">
-                            <div style="text-align: end"><%= create_show @article %></div>
+                    </div>
+                </div>
+                <% else %>
+                <div class="card mb-2 shadow">
+                    <div class="card-body">
+                        <h6 style="text-align: center">Чтобы оставить комментарий необходимо 
+                        <%= new_user_session %> или <%= new_user_registration %></h6>
+                    </div>
+                </div>
+                <% end %>
+                <div class="digg_pagination">
+                    <div class="row justify-content-center mb-2">
+                        <div class="col-auto">
+                            <%= will_paginate @comments, inner_window: 1, outer_window: 0 %>
                         </div>
                     </div>
                 </div>
-            </div>
-            <h4 class="mb-3">Комментарии <%= @number_of_comments %></h4>
-            <% if user_signed_in? %>
-            <div class="card mb-2 shadow">
-                <div class="card-body">
-                    <%= form_for([@article, @article.comments.build]) do |f| %>
-                        <%= f.text_area :body, class: "form-control mb-2", placeholder: "Комментарий", resize: "vertical, auto" %>
-                        <%= f.button "Отправить", type: "submit", class: "btn btn-outline-success btn-sm" %>
-                    <% end %>
-                </div>
-            </div>
-            <% else %>
-            <div class="card mb-2 shadow">
-                <div class="card-body">
-                    <h6 style="text-align: center">Чтобы оставить комментарий необходимо 
-                    <%= new_user_session %> или <%= new_user_registration %></h6>
-                </div>
-            </div>
-            <% end %>
-            <div class="digg_pagination">
-                <div class="row justify-content-center mb-2">
-                    <div class="col-auto">
-                        <%= will_paginate @comments, inner_window: 1, outer_window: 0 %>
-                    </div>
-                </div>
-            </div>
-            <div id="comment_pane">
                 <% add_user_avatar @comments %>
                 <% @comments.each do |comment| %>
                     <%= render 'comments', comment: comment %>
                 <% end %>
-            </div>
-            <div class="digg_pagination">
-                <div class="row justify-content-center mb-0">
-                    <div class="col-auto">
-                        <%= will_paginate @comments, inner_window: 1, outer_window: 0 %>
+                <div class="digg_pagination">
+                    <div class="row justify-content-center mb-0">
+                        <div class="col-auto">
+                            <%= will_paginate @comments, inner_window: 1, outer_window: 0 %>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </turbo-frame>
         </div>
     </div>
 </div>

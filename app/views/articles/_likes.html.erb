@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="col-auto">
+        <%= image_tag("Likes.png", size: "25x25") %>
+    </div>
+    <div class="col-auto">
+        <div class="article-down-font"><%= @article.likes.size %></div>
+    </div>
+    <div class="col-auto">
+        <%= article_like_button @article %>
+    </div>
+    <% if user_signed_in? %>
+        <% if @article.user_id == current_user.id %>
+        <div class="col-auto">
+            <div class="dropdown">
+                <a class="text-reset" href="#" role="button" id="articleDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none">
+                Изменить
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="articleDropdown">
+                    <li><a>
+                        <%= article_edit_link %>
+                    </a></li>
+                    <li><a>
+                        <%= article_delete_link %>
+                    </a></li>
+                </ul>
+            </div>
+        </div>
+        <% end %>
+    <% end %>
+    <div class="col">
+        <div style="text-align: end"><%= create_show @article %></div>
+    </div>
+</div>
