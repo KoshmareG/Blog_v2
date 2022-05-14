@@ -29,11 +29,11 @@ module ArticlesHelper
     end
 
     def article_text_preview article
-        simple_format(truncate(article.text, length: 800, separator: ' ', omission: ' ... ') {link_to "Читать дальше", article_path(article.id)})
+        article.text
     end
 
     def article_edit_link
-        link_to 'Редактировать', edit_article_path, class: "dropdown-item", method: :get
+        link_to 'Редактировать', edit_article_path, class: "dropdown-item", method: :get, data: {turbo: false}
     end
 
     def article_delete_link

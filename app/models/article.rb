@@ -3,6 +3,8 @@ class Article < ApplicationRecord
     has_many :likes, dependent: :destroy
     belongs_to :user
 
+    has_rich_text :text
+
     default_scope {order(id: :desc)}
     validates :title, presence: true, length: { maximum: 130 }
     validates :text, presence: true
