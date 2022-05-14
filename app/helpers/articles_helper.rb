@@ -29,7 +29,7 @@ module ArticlesHelper
     end
 
     def article_text_preview article
-        article.text
+        simple_format(truncate(article.text.to_plain_text, length: 800, separator: ' ', omission: ' ... ') {link_to "Читать дальше", article_path(article.id)})
     end
 
     def article_edit_link
