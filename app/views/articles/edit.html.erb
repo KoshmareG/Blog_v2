@@ -11,7 +11,7 @@
                             <p class="mb-1" style="color: rgb(253, 127, 127)"><%= @article.errors.messages[:title][0] %></p>
                         <% end %>
                     <h5 class="form-label">Текст статьи</h6>
-                    <%= f.rich_text_area :text, class: "form-control mb-1", rows: "16", id: "scrollbar" %>
+                    <%= f.rich_text_area :text, class: "trix-editor mb-2" %>
                         <% if @article.errors.present? %> 
                             <p class="mb-1" style="color: rgb(253, 127, 127)"><%= @article.errors.messages[:text][0] %></p>
                         <% end %>
