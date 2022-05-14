@@ -36,12 +36,12 @@ module ApplicationHelper
         link_to 'Выйти', destroy_user_session_url, data: { turbo_method: :delete }, class: "link-light lh-base", style: "text-decoration: none"
     end
 
-    def link_to_new_destroy_user_session_url
-        link_to 'Вход', new_user_session_url, method: :get, class: "link-light lh-base", style: "text-decoration: none"
+    def link_to_new_user_session_url
+        link_to 'Вход', new_user_session_url, method: :get, data: {turbo: false}, class: "link-light lh-base", style: "text-decoration: none"
     end
 
-    def link_to_new_destroy_user_session
-        link_to "Регистрация", new_user_registration_url, class: "link-light lh-base", style: "text-decoration: none"
+    def link_to_new_registration_user
+        link_to "Регистрация", new_user_registration_url, data: {turbo: false}, class: "link-light lh-base", style: "text-decoration: none"
     end
 
 end
