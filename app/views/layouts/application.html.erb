@@ -25,16 +25,10 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav fw-light">
               <li class="nav-item">
-                <%= link_to_home %>
-              </li>
-              <li class="nav-item">
                 <%= link_to_feed %>
               </li>
               <li class="nav-item">
-                <%= link_to_new_article %>
-              </li>
-              <li class="nav-item">
-                <%= link_to_terms %>
+                <%= link_to_search %>
               </li>
               <li class="nav-item dropdown">
                 <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -44,6 +38,9 @@
                 <ul class="dropdown-menu dropdown-navbar-blur translate-middle-x">
                   <div class="container-fluid fw-light">
                     <h5 class="link-light"><%= current_user.username %></h5>
+                    <li>
+                      <%= link_to_new_article %>
+                    </li>
                     <li>
                       <%= link_to_user_profile %>
                     </li>

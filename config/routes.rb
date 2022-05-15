@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {sessions: 'users/sessions', registrations: 'users/registrations'}
 
-  root to: "home#index" 
+  root to: "articles#index" 
 
   get 'home/index'
   get 'about', action: :show, controller: 'about'
+  get 'search', action: :show, controller: 'search'
 
   resources :articles do
     resources :comments, only: [:create, :destroy]

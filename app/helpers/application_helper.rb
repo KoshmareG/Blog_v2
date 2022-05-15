@@ -9,11 +9,15 @@ module ApplicationHelper
     end
 
     def link_to_feed
-        link_to 'Лента', articles_path, class: "nav-link active mx-auto text-center"
+        link_to 'Главная', articles_path, class: "nav-link active mx-auto text-center"
+    end
+
+    def link_to_search
+        link_to 'Поиск', search_url, class: "nav-link active mx-auto text-center"
     end
 
     def link_to_new_article
-        link_to 'Новая статья', new_article_url, class: "nav-link active mx-auto text-center"
+        link_to 'Написать статью', new_article_url, class: "link-light lh-base", style: "text-decoration: none"
     end
 
     def link_to_terms
