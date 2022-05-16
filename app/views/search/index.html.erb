@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col col-xs-4 col-lg-8">
+            <div class="card mb-2 shadow">
+                <div class="card-body">
+                    <%= form_tag search_url, role: 'search', class: "row mb-2", method: :get do %>
+                    <div class="col">
+                        <%= text_field_tag :request, params[:request], class: "form-control", placeholder: "Введите запрос" %>
+                    </div>
+                    <div class="col-auto">
+                        <%= submit_tag 'Найти', :name => nil, class: "btn btn-success search-button float-end" %>
+                    </div>
+                    <% end %>
+                    <% if @results != nil %>
+                    <turbo-frame>
+                    <ul class="list-group list-group-flush">
+                        <% @results.each do |result| %>
+                            <%= render 'search_results', result: result %>
+                        <% end %>
+                    </ul>
+                    </turbo-frame>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

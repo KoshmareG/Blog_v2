@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   get 'home/index'
   get 'about', action: :show, controller: 'about'
-  get 'search', action: :show, controller: 'search'
+  get 'search', action: :index, controller: 'search'
 
   resources :articles do
     resources :comments, only: [:create, :destroy]
