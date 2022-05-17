@@ -42,7 +42,7 @@
               <h5><%= article_title article %></h5>
               <div class="row mb-3">
                 <% if user_signed_in? %>
-                    <% if article.user_id == current_user.id %>
+                    <% if article.user_id == current_user.id or current_user.role == 'admin' %>
                     <div class="col">
                         <div class="dropdown">
                             <a class="text-reset" href="#" role="button" id="articleDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none">

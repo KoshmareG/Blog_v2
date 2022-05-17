@@ -21,7 +21,7 @@
                         </a>
                     </div>
                     <% if user_signed_in? %>
-                        <% if comment.user_id == current_user.id %>
+                        <% if comment.user_id == current_user.id or current_user.role == 'admin' %>
                         <div class="col-auto">
                             <a><%= delete_comment_button comment %></a>
                         </div>
@@ -73,7 +73,7 @@
                                 <p class="card-text mb-2"><%= child_comment.body %></p>
                                 <div class="row">
                                     <% if user_signed_in? %>
-                                        <% if child_comment.user_id == current_user.id %>
+                                        <% if child_comment.user_id == current_user.id or current_user.role == 'admin' %>
                                         <div class="col-auto">
                                             <a><%= delete_comment_button child_comment %></a>
                                         </div>
