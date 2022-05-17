@@ -12,4 +12,11 @@ class User < ApplicationRecord
 
   validates :avatar, file_size: { less_than_or_equal_to: 10.megabytes },
             file_content_type: { allow: ['image/jpeg', 'image/png', 'image/webp'] }
+
+  enum role: [:user, :moderator, :admin]
+  after_initialize :set_default_role, :if => :new_record?
+  def set_default_role
+    self.role ||= :user
+  end
+  
 end

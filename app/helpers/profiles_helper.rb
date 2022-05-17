@@ -24,4 +24,14 @@ module ProfilesHelper
         button_to 'Удалить', article_path, class: "dropdown-item text-danger", method: :delete, form: {data: {turbo_confirm: 'Вы действительно хотите удалить статью?'}}
     end
 
+    def user_role user
+        if user.role == "user"
+            "Пользователь"
+        elsif user.role == "moderator"
+            "Модератор"
+        else 
+            "Администратор"
+        end
+    end
+
 end

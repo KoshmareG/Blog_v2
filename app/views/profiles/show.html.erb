@@ -10,6 +10,7 @@
             </div>
           </div>
           <h5 class="card-title text-center"><%= @user.username %></h5>
+          <p class="fw-light" style="text-align: center;"><%= user_role @user %></p>
           <p class="fw-light"><b>Email:</b> <%= @user.email %></p>
           <p class="fw-light"><b>Пол:</b> <%= @user.gender.present? ? @user.gender : "Не указан" %></p>
           <p class="fw-light"><b>Дата рождения:</b> <%= @user.birthday.present? ? @user.birthday : "Не указана" %></p>
