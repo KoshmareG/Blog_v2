@@ -1,6 +1,6 @@
 <%= form_tag search_url, role: 'search', class: "row g-0", method: :get do %>
     <div class="col-auto">
-        <%= text_field_tag :request, params[:request], class: "form-control form-control-sm", placeholder: "Поиск" %>
+        <%= text_field_tag :request, params[:request], class: "form-control form-control-sm search-field", placeholder: "Поиск" %>
     </div>
     <div class="col-auto">
         <%= button_to image_tag("search.png", size: "20x20"), root_path, :name => nil, type: "submit", class: "profile-button navbar-search-button" %>

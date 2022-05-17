@@ -21,7 +21,7 @@ module ArticlesHelper
     end
 
     def link_to_article article
-        link_to article.title, article_path(article.id), class: "link-dark", style: "text-decoration: none"
+        link_to article.title, article_path(article.id), data: {turbo: false}, class: "link-dark", style: "text-decoration: none"
     end
 
     def article_author_link article

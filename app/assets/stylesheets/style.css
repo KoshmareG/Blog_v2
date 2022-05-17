@@ -162,3 +162,7 @@
   .navbar-search-button{
       margin-top: 10%;
   }
+
+  .search-field{
+      background-color: rgba(250, 250, 250, 0.5);
+  }
