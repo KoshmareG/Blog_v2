@@ -8,4 +8,8 @@ class Article < ApplicationRecord
     default_scope {order(id: :desc)}
     validates :title, presence: true, length: { maximum: 130 }
     validates :text, presence: true
+
+    def last_comment
+        comments.first
+    end
 end
