@@ -289,6 +289,7 @@ DEPENDENCIES
   mini_magick
   puma (~> 5.0)
   rails (~> 7.0.2, >= 7.0.2.3)
+  rexml
   rspec-rails
   selenium-webdriver
   shoulda-matchers
