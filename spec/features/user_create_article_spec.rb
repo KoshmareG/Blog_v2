@@ -12,11 +12,7 @@ RSpec.feature "Article Creation", type: :feature do
     end
 
     scenario "allows user to create and edit new article" do
-        visit(new_article_path)
-
-        fill_in :article_title, :with => 'Test article title'
-        find('trix-editor').set('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed')
-        click_button('Опубликовать')
+        create_article
 
         expect(page).to have_content('Изменить')
 
