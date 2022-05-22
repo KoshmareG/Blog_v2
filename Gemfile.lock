@@ -83,7 +83,6 @@ GEM
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
     childprocess (4.1.0)
-    cliver (0.3.2)
     concurrent-ruby (1.1.9)
     crass (1.0.6)
     debug (1.4.0)
@@ -165,10 +164,6 @@ GEM
     nokogiri (1.13.3-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
-    poltergeist (1.18.1)
-      capybara (>= 2.1, < 4)
-      cliver (~> 0.3.1)
-      websocket-driver (>= 0.2.0)
     public_suffix (4.0.6)
     puma (5.6.2)
       nio4r (~> 2.0)
@@ -292,7 +287,6 @@ DEPENDENCIES
   jbuilder
   jquery-rails
   mini_magick
-  poltergeist
   puma (~> 5.0)
   rails (~> 7.0.2, >= 7.0.2.3)
   rexml
