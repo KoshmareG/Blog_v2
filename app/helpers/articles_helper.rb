@@ -1,9 +1,5 @@
 module ArticlesHelper
 
-    def default_avatar
-        image_tag(image_url("default_avatar.jpeg"), style: "width: 45px; height: 45px; object-fit: cover;", class: "articles-avatar")
-    end
-
     def article_user_avatar
         if @article_author.avatar.present?
             image_tag(@article_author.avatar.variant(resize_to_fill: [50, 50]), class: "articles-avatar")

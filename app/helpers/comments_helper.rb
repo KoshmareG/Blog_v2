@@ -1,5 +1,9 @@
 module CommentsHelper
 
+    def default_avatar
+        image_tag(image_url("default_avatar.jpeg"), style: "width: 45px; height: 45px; object-fit: cover;", class: "articles-avatar")
+    end
+
     def article_comment_avatar comment
         if comment.avatar.present?
             image_tag(image_url(comment.avatar), style: "width: 45px; height: 45px; object-fit: cover;", class: "articles-avatar")
