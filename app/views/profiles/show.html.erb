@@ -39,7 +39,7 @@
           <ul class="list-group list-group-flush">
           <% @articles.each do |article| %>
             <li class="list-group-item">
-              <h5><%= article_title article %></h5>
+              <h5><%= link_to_article article %></h5>
               <div class="row mb-3">
                 <% if user_signed_in? %>
                     <% if article.user_id == current_user.id or current_user.role == 'admin' %>

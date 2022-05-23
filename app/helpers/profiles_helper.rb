@@ -12,10 +12,6 @@ module ProfilesHelper
         button_to "Настройки аккаунта", edit_user_registration_url, class: "btn btn-outline-secondary btn-sm", method: :get
     end
 
-    def article_title article
-        link_to article.title, article_path(article.id), class: "link-dark", style: "text-decoration: none"
-    end
-
     def link_to_edit_article
         link_to 'Редактировать', edit_article_path, class: "dropdown-item", method: :get
     end
