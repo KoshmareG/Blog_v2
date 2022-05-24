@@ -24,10 +24,6 @@ module ArticlesHelper
         link_to article.username, profile_path(article.user_id), class: "text-muted", style: "text-decoration: none"
     end
 
-    def article_text_preview article
-        simple_format(truncate(article.text.to_plain_text, length: 800, separator: ' ', omission: ' ... ') {link_to "Читать дальше", article_path(article.id)})
-    end
-
     def article_edit_link
         link_to 'Редактировать', edit_article_path, class: "dropdown-item", method: :get, data: {turbo: false}
     end
