@@ -22,7 +22,7 @@
     <nav class="navbar sticky-top navbar-expand navbar-dark background-blur mb-3">
       <div class="container-fluid lh-1">
         <div class="mx-auto">
-          <div class="collapse navbar-collapse" id="navbarNav">
+          <div class="collapse navbar-collapse">
             <ul class="navbar-nav fw-light">
               <li class="nav-item">
                 <%= link_to_feed %>
@@ -52,7 +52,7 @@
                 <% else %>
                   <%= default_avatar_navbar %>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-dark">
+                <ul class="dropdown-menu dropdown-navbar-blur translate-middle-x">
                   <div class="container-fluid fw-light">
                     <li>
                       <%= link_to_new_user_session_url %>
