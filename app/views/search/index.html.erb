@@ -13,11 +13,15 @@
                     <% end %>
                     <% if @results != nil %>
                     <turbo-frame>
-                    <ul class="list-group list-group-flush">
-                        <% @results.each do |result| %>
-                            <%= render 'search_results', result: result %>
-                        <% end %>
-                    </ul>
+                        <ul class="list-group list-group-flush">
+                            <% if @results.empty? %>
+                                <h5 style="text-align: center;">Увы, ничего не нашлось :(</h5>
+                            <% else %>
+                                <% @results.each do |result| %>
+                                    <%= render 'search_results', result: result %>
+                                <% end %>
+                            <% end %>
+                        </ul>
                     </turbo-frame>
                     <% end %>
                 </div>
