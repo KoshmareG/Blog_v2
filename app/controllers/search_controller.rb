@@ -4,7 +4,9 @@ class SearchController < ApplicationController
         if params[:request].blank?
             @result = nil
         else
-            @results = Article.where("(title) LIKE :q", q: "%" + params[:request] + "%")
+            search_array = params[:request].split(/ /)
+            search_request = search_array.map { |req| "%" + req + "%" }
+            @results = Article.where("title ILIKE ANY ( array[?] )", search_request)
         end
         
     end
