@@ -9,10 +9,10 @@ class SearchController < ApplicationController
             additional_array = []
 
             request_array.each do |word|
-                if word.size >= 4 && word.size <= 5
-                    additional_array << word[-1]
-                elsif word.size >= 6
-                    additional_array << word[-2]
+                if word.size >= 6
+                    additional_array << word[0, word.size - 2]
+                elsif word.size >= 4 && word.size <= 5
+                    additional_array << word[0, word.size - 1]                   
                 end
             end
 
