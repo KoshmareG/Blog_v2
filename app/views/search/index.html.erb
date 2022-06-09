@@ -13,9 +13,30 @@
                     <% end %>
                     <% if @results != nil %>
                     <turbo-frame>
+                        <% if @user_results.empty? == false %>
+                            <button type="button" data-bs-toggle="collapse" data-bs-target="#user_results" aria-expanded="false" class="profile-button center-content fw-light">
+                                Найдено пользователей: <%= @user_results_size %>
+                            </button>
+                            <div class="collapse" id="user_results">
+                                <div class="card card-body">
+                                    <% @user_results.each do |user| %>
+                                        <div class="row">
+                                            <div class="col-auto">
+                                                <%= user_search_avatar user %>
+                                            </div>
+                                            <div class="col">
+                                                <h4><%= user_search_link user %></h4>
+                                            </div>
+                                        </div>
+                                    <% end %>
+                                </div>
+                            </div>
+                        <% end %>
+                        <h5 class="fw-light">Результатов: <%= @results_size %></h5>
                         <ul class="list-group list-group-flush">
                             <% if @results.empty? %>
-                                <h5 style="text-align: center;">Увы, ничего не нашлось :(</h5>
+                                <h5 style="text-align: center;">Увы, таких статей не нашлось :(</h5>
+                                <%= image_tag("search_wrong.png", size: "200x200", class: "center-content") %>
                             <% else %>
                                 <% @results.each do |result| %>
                                     <%= render 'search_results', result: result %>

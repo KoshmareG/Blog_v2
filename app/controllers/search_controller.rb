@@ -20,6 +20,10 @@ class SearchController < ApplicationController
 
             search_request = search_array.map { |req| "%" + req + "%" }
             @results = Article.where("title ILIKE ANY ( array[?] )", search_request)
+            @user_results = User.where("username ILIKE ANY ( array[?] )", search_request)
+
+            @results_size = @results.size
+            @user_results_size = @user_results.size
         end
         
     end
