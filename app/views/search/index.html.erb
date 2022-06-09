@@ -36,7 +36,7 @@
                         <ul class="list-group list-group-flush">
                             <% if @results.empty? %>
                                 <h5 style="text-align: center;">Увы, таких статей не нашлось :(</h5>
-                                <%= image_tag("search_wrong.png", size: "200x200", class: "center-content") %>
+                                <%= search_wrong %>
                             <% else %>
                                 <% @results.each do |result| %>
                                     <%= render 'search_results', result: result %>

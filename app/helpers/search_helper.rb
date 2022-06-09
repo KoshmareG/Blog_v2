@@ -12,4 +12,8 @@ module SearchHelper
         link_to user.username, profile_path(user.id), data: {turbo: false}, class: "text-muted", style: "text-decoration: none"
     end
 
+    def search_wrong
+        image_tag("search_wrong.png", size: "200x200", class: "center-content")
+    end
+
 end
